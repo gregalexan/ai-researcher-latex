@@ -1,0 +1,115 @@
+\documentclass[12pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage[utf8]{inputenc}
+\usepackage[american]{babel}
+
+% Page & typography
+\usepackage{geometry}
+\geometry{margin=1in}
+\usepackage{setspace}
+\doublespacing
+\usepackage{microtype}
+\emergencystretch=2em  % loosen linebreaking to avoid overfull boxes
+\sloppy                 % last-resort line breaking (safe for drafts)
+\usepackage[section]{placeins}
+
+% Line numbers 
+\usepackage[switch,modulo]{lineno}
+\setlength\linenumbersep{10pt} % a bit more space from text
+\renewcommand\linenumberfont{\normalfont\small\ttfamily}
+
+% Number sections/subsections
+\setcounter{secnumdepth}{3}
+
+% Math, tables, figures
+\usepackage{amsmath, amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{threeparttable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{caption}
+\usepackage{float}
+\usepackage{siunitx}
+\sisetup{detect-weight,detect-family,table-number-alignment=center}
+\usepackage{makecell}
+
+% - Images: sensible defaults + safe include -
+\graphicspath{{figures/}{./}}
+\setkeys{Gin}{width=\linewidth,keepaspectratio}
+\newcommand{\safeincludegraphics}[2][]{\includegraphics[#1]{#2}}
+
+% Colors
+\usepackage{xcolor}
+
+% Captions: avoid wide lines
+\captionsetup{
+  font=small,
+  justification=raggedright,
+  singlelinecheck=false
+}
+
+% Tabularx helpers
+\newcolumntype{Y}{>{\RaggedRight\arraybackslash}X}
+\renewcommand{\arraystretch}{1.15}
+
+% Authors & affiliations 
+\usepackage{authblk}
+\makeatletter
+\newcommand{\samethanks}[1][\value{footnote}]{\footnotemark[#1]}
+\makeatother
+
+% Bibliography (APA, author-year)
+\usepackage{csquotes}
+\usepackage[style=apa, backend=biber, maxcitenames=2, uniquelist=false]{biblatex}
+\DeclareLanguageMapping{american}{american-apa}
+
+\addbibresource{references.bib} % ensure this file exists (even empty)
+
+% Links (break long URLs/DOIs safely)
+\usepackage{xurl} % smarter URL breaking
+\usepackage[unicode,breaklinks=true]{hyperref}
+\hypersetup{
+  colorlinks=true,
+  urlcolor=blue,
+  linkcolor=black,
+  citecolor=black
+}
+
+% (Optional) Tighter, compressed PDF output
+\pdfminorversion=7
+\pdfcompresslevel=9
+\pdfobjcompresslevel=3
+
+% Metadata
+\title{AI Agents Orchestration and Workflow Automation for Corporate Due Diligence}
+\author[1]{Grigorios Alexandrou}
+% Αν το κάνεις μαζί με την καθηγήτριά σου, μπορείς να προσθέσεις τη γραμμή: 
+% \author[1]{Name Surname\thanks{Supervising professor.}}
+\affil[1]{Department of Management Science and Technology, 
+Athens University of Economics and Business (AUEB), Athens, Greece}
+\date{March 2026}
+
+\begin{document}
+\maketitle
+\linenumbers
+
+\begin{abstract}
+    This study presents the design and implementation of a fully automated, multi-agent workflow for comprehensive corporate due diligence and market analysis.
+    Using an event-driven orchestration architecture, the system integrates Large Language Models (LLMs) with retrieval-augmented generation (RAG) to synthesize fragmented, dynamic, and unstructured web data into investment-grade intelligence.
+    The pipeline dynamically queries search APIs for real-time sector and competitor data, while incorporating a specialized data extraction module that accesses hidden endpoints of the Greek Business Registry ($\Gamma$.E.MH.).
+    By combining targeted API requests with OCR capabilities, the system programmatically retrieves and summarizes official financial statements and corporate modification records.
+    To mitigate language model hallucinations and ensure data integrity, the architecture employs a structural fallback mechanism, defaulting to alternative open-source financial intelligence when official registry data is unavailable.
+    Overall, this agentic pipeline demonstrates how modular AI workflows can bridge the gap between unstructured web signals and structured financial registries, significantly accelerating the due diligence process and providing actionable, verifiable insights for investment committees.
+\end{abstract}
+
+\textbf{Keywords:} AI agents; workflow automation; due diligence; retrieval-augmented generation (RAG); financial intelligence; large language models
+
+\section{Introduction}
+\label{sec:intro}
+
+% Εδώ ξεκινάει η εισαγωγή σου
+
+\end{document}
