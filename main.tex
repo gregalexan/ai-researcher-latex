@@ -161,7 +161,10 @@ Finally, a specialized formatting node within the low-code environment structure
 
 This study demonstrates the viability of utilizing multi-agent orchestration frameworks to automate complex corporate due diligence. By combining dynamic web retrieval, undocumented API querying, and OCR-based document processing, the proposed n8n pipeline effectively bridges the gap between unstructured market signals and strict financial compliance data. Furthermore, the implementation of structural fallback mechanisms successfully safeguards the system against LLM ``hallucinations'', ensuring data integrity.
 
-Future work will focus on expanding the system's capabilities to include automated sentiment analysis of consumer reviews, integration with international corporate registries (e.g., UK Companies House), and the deployment of local, privacy-preserving LLMs for the analysis of highly confidential proprietary data.
+\section{Future Work}
+\label{sec:future}
+
+Future work will focus on three primary directions. First, the system will be extended to integrate directly with the fund's internal portfolio database, enabling each research report to be enriched with proprietary deal-level data, historical performance metrics, and internal analyst notes specific to each startup. This would transform the pipeline from a general-purpose research tool into a deeply contextualized decision-support system. Second, the scope of official registry coverage will be broadened to include international business registries, such as the UK Companies House and equivalent European authorities, allowing the framework to support due diligence on companies incorporated outside Greece. Third, the current dependency on a third-party commercial API for PDF text extraction will be replaced with a self-hosted, open-source document processing solution, reducing operational costs and eliminating external dependencies while maintaining equivalent extraction quality.
 
 \section{Data and Workflow Availability}
 \label{sec:data}
