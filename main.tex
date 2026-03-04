@@ -86,8 +86,7 @@
 % Metadata
 \title{AI Agents Orchestration and Workflow Automation for Corporate Due Diligence}
 \author[1]{Grigorios Alexandrou}
-% Αν το κάνεις μαζί με την καθηγήτριά σου, μπορείς να προσθέσεις τη γραμμή: 
-% \author[1]{Name Surname\thanks{Supervising professor.}}
+\author[1]{Katerina Pramatari\thanks{Supervising professor.}}
 \affil[1]{Department of Management Science and Technology, 
 Athens University of Economics and Business (AUEB), Athens, Greece}
 \date{March 2026}
@@ -110,6 +109,88 @@ Athens University of Economics and Business (AUEB), Athens, Greece}
 \section{Introduction}
 \label{sec:intro}
 
-% Εδώ ξεκινάει η εισαγωγή σου
+The evaluation of prospective investments and the continuous monitoring of portfolio companies in the venture capital (VC) ecosystem are highly resource-intensive processes. Corporate due diligence requires the synthesis of fragmented information from diverse sources, including unstructured web data, real-time news, competitive market analyses, and highly structured, often inaccessible, official financial registries. Traditionally, this process relies heavily on manual desk research, which is prone to human error, cognitive bias, and significant time delays \parencite{yang2023fingpt}.
+
+The advent of Large Language Models (LLMs) has introduced new paradigms for natural language understanding and data synthesis. However, deploying standalone LLMs for financial and corporate due diligence presents critical challenges. First, standard language models are constrained by their training data cut-offs, rendering them incapable of retrieving real-time market signals. Second, they are susceptible to "hallucinations"—generating plausible but factually incorrect information—a fatal flaw in investment decision-making contexts \parencite{ji2023survey}. Finally, LLMs inherently lack the ability to autonomously interface with external databases, APIs, or parse complex file formats such as scanned financial PDFs.
+
+To address these limitations, this study proposes a fully automated, multi-agent orchestration pipeline. By shifting from a single-prompt LLM approach to an event-driven \emph{Agentic Workflow}, the system decomposes the complex task of due diligence into specialized sub-tasks managed by distinct AI agents \parencite{xi2023rise}. This architecture integrates Retrieval-Augmented Generation (RAG) through real-time search APIs to gather market intelligence, while employing customized data extraction modules to programmatically retrieve and parse official financial filings from the Greek Business Registry ($\Gamma$.E.MH.).
+
+The primary contributions of this paper are threefold:
+\begin{enumerate}
+    \item The design of a modular, multi-agent architecture that automates the end-to-end corporate research process.
+    \item The implementation of a programmatic extraction pipeline capable of querying hidden registry endpoints, retrieving PDF documents, and performing Optical Character Recognition (OCR) to structure financial data.
+    \item The development of a robust structural fallback mechanism that dynamically switches to alternative open-source intelligence when official registry data is unavailable, thereby strictly mitigating LLM hallucinations.
+\end{enumerate}
+
+
+\section{Background and Related Work}
+\label{sec:background}
+
+\subsection{Agentic Workflows and Multi-Agent Systems}
+Recent advancements in Artificial Intelligence have shifted the focus from monolithic model interactions to Agentic Workflows \parencite{xi2023rise}. In a multi-agent system, multiple LLM-powered entities are assigned distinct roles, system prompts, and tool-use capabilities. This modular approach allows for complex reasoning chains, where the output of one agent serves as the verified input for another, significantly reducing error rates and improving logical consistency.
+
+\subsection{Retrieval-Augmented Generation (RAG)}
+Retrieval-Augmented Generation addresses the static knowledge constraints of LLMs by grounding their generation in dynamically retrieved external documents or search results \parencite{lewis2020retrieval}. In financial contexts, RAG is critical for acquiring up-to-date market sizes, recent funding rounds, and competitor moves. Tools like Perplexity AI utilize deep research algorithms to search the open web and provide the LLM with a factual context window, ensuring that the generated intelligence is both current and citable.
+
+
+\section{System Architecture and Methodology}
+\label{sec:architecture}
+
+The proposed system is orchestrated using an event-driven automation platform (n8n), structured as a Directed Acyclic Graph (DAG) of distinct processing nodes. The pipeline is triggered via a custom HTML form interface, where users select a target portfolio company and provide their contact details.
+
+\subsection{Data Intake and Context Initialization}
+Upon submission, a Webhook node captures the payload. A deterministic Code node maps the selected company to a pre-scraped JSON database containing baseline attributes (e.g., founders, sector, initial investment year, headquarters, and registration numbers). This structured data is fed into the \textbf{AI Context Agent}, which synthesizes a concise foundational profile to ground the subsequent research nodes.
+
+\subsection{Market and Competitive Intelligence Modules}
+To gather real-time market data, the architecture employs a suite of specialized agents utilizing the Perplexity Sonar Deep Research API, optimized for up-to-date factual retrieval:
+\begin{itemize}
+    \item \textbf{AI Source Mapper:} Acts as the foundational research planner. It dynamically identifies the most reliable, niche-specific web portals, databases, and news aggregators relevant to the company's specific sector.
+    \item \textbf{AI Sector \& AI Competition:} Operating in parallel branches, these agents utilize the mapped sources to extract macro-environmental trends, market sizing, and a comprehensive competitive landscape analysis. They categorize competitors into direct, adjacent, and niche innovators, verifying funding statuses and recent market activities.
+    \item \textbf{AI News \& AI Signals:} Following the convergence of the sector and competition branches, these agents scan for recent strategic developments (e.g., partnerships, product launches) and extract quantifiable investment signals, filtering out marketing noise.
+\end{itemize}
+
+
+\section{Financial Data Retrieval and Fallback Mechanisms}
+\label{sec:financials}
+
+The core engineering complexity of the pipeline lies in its ability to interface with official state registries, specifically the Greek Business Registry ($\Gamma$.E.MH.), which does not provide an open, documented public API for direct data consumption.
+
+\subsection{Dynamic Endpoint Querying and PDF Extraction}
+Financial data and corporate announcements in $\Gamma$.E.MH. are exclusively available as PDF documents, loaded dynamically via hidden backend endpoints. The workflow employs a conditional logic router (Switch/If nodes) to check for the existence of a valid registry number (arGEMI).
+If present, an HTTP Request node programmatically queries the registry's undocumented endpoint, retrieving the dynamic JSON payload containing the document IDs.
+
+The system isolates the relevant document IDs and categorizes them into two streams:
+\begin{enumerate}
+    \item \textbf{Corporate Modifications (Announcements):} Records regarding board changes, capital increases, and statutory modifications.
+    \item \textbf{Financial Statements:} Official balance sheets, income statements, and auditor reports.
+\end{enumerate}
+
+The pipeline fetches the raw PDF files (prioritizing the most recent fiscal years) and routes them through a specialized API (PDF.co) to perform text extraction and OCR \parencite{smith2007overview}. The extracted raw text is then processed by two dedicated summarization models (\textbf{AI FinSummary} and \textbf{AI ModSummary}) which distill the unstructured text into standardized financial metrics (e.g., Assets, Liabilities, Revenue, EBIT) while preserving source citations.
+
+\subsection{Structural Fallback and Hallucination Mitigation}
+A critical requirement for automated due diligence is the strict prevention of fabricated financial data. To achieve this, the pipeline incorporates an \textbf{Alternative Financials} agent. If the initial routing determines that the target company lacks a $\Gamma$.E.MH. number (e.g., companies incorporated abroad), the official registry branch is bypassed. Instead, the Alternative Financials agent is activated to retrieve verifiable financial footprints from trusted open-source databases (e.g., Crunchbase, Dealroom). If no verifiable data is found, the agent explicitly outputs a "Not Found" flag, ensuring the final report reflects true visibility gaps rather than hallucinated metrics.
+
+
+\section{Synthesis and Output Generation}
+\label{sec:output}
+
+The final stage of the pipeline involves the synthesis of the diverse intelligence streams into a cohesive, investor-ready report.
+\begin{itemize}
+    \item \textbf{AI Researcher:} Aggregates the sector, competition, news, signals, and financial corpora to produce a comprehensive strategic research note, highlighting recent developments and potential blind spots.
+    \item \textbf{AI Analyst:} Acts as the simulated Investment Committee member. It distills the research into an Executive Summary, assigns attractiveness scores across market timing and product differentiation, and formulates actionable 30-to-180-day recommendations for both the fund and the startup.
+    \item \textbf{AI Overall Company Info:} Generates a public-facing summary to help founders understand their external market footprint.
+\end{itemize}
+
+Finally, a dedicated Code node formats the synthesized JSON outputs into a styled, responsive HTML template. The report is automatically dispatched to the requesting analyst via a Gmail API integration, completing the end-to-end workflow execution.
+
+
+\section{Conclusion}
+\label{sec:conclusion}
+
+This study demonstrates the viability of utilizing multi-agent orchestration frameworks to automate complex corporate due diligence. By combining dynamic web retrieval, undocumented API querying, and OCR-based document processing, the proposed n8n pipeline effectively bridges the gap between unstructured market signals and strict financial compliance data. Furthermore, the implementation of structural fallback mechanisms successfully safeguards the system against LLM hallucinations, ensuring data integrity.
+
+Future work will focus on expanding the system's capabilities to include automated sentiment analysis of consumer reviews, integration with international corporate registries (e.g., UK Companies House), and the deployment of local, privacy-preserving LLMs for the analysis of highly confidential proprietary data.
+
+\printbibliography
 
 \end{document}
