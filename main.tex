@@ -91,11 +91,11 @@ Athens University of Economics and Business (AUEB), Athens, Greece}
 \linenumbers
 
 \begin{abstract}
-    This study introduces a fully automated multi-agent framework designed to streamline corporate due diligence and market analysis for venture capital.
-    Built on an event-driven orchestration architecture, the system leverages Large Language Models (LLMs) and dynamic retrieval of publicly available web data to synthesize unstructured information into actionable investment insights.
-    A key innovation is the integration of a specialized module that interfaces with hidden endpoints of the Greek Business Registry ($\Gamma$.E.MH.), utilizing programmatic API requests and OCR to extract data from official financial filings and corporate records.
-    To ensure reliability, the architecture implements a structural fallback mechanism that mitigates ``hallucinations'' by cross-referencing alternative financial databases when registry data is missing.
-    The results demonstrate that modular agentic workflows can effectively bridge the gap between volatile web signals and formal regulatory data, significantly accelerating the due diligence process while maintaining high data integrity.
+  This study introduces a fully automated multi-agent framework designed to streamline corporate due diligence and market analysis for venture capital.
+  Built on an event-driven orchestration architecture, the system leverages Large Language Models (LLMs) and dynamic retrieval of publicly available web data to synthesize unstructured information into actionable investment insights.
+  A key innovation is the integration of a specialized module that interfaces with hidden endpoints of the Greek Business Registry ($\Gamma$.E.MH.), utilizing programmatic API requests and OCR to extract data from official financial filings and corporate records.
+  To ensure reliability, the architecture implements a structural fallback mechanism that mitigates ``hallucinations'' by cross-referencing alternative financial databases when registry data is missing.
+  The results demonstrate that modular agentic workflows can effectively bridge the gap between volatile web signals and formal regulatory data, significantly accelerating the due diligence process while maintaining high data integrity.
 \end{abstract}
 
 \textbf{Keywords:} AI agents; Workflow Automation; Due Diligence; Venture Capital; Financial Intelligence; Large Language Models; Hallucination Mitigation
@@ -122,7 +122,7 @@ Parallel to the rise of agentic orchestration, dynamic information retrieval has
 
 Furthermore, the integration of automated document processing and Optical Character Recognition (OCR) has expanded the reach of AI agents into the domain of non-digitized corporate records. The ability to programmatically parse and interpret complex financial layouts, including balance sheets and income statements, allows AI systems to transform legacy data into structured, machine-readable formats \parencite{smith2007overview}. By combining these diverse technological layers, modern workflows can now autonomously bridge the gap between fragmented web signals and formal regulatory filings, providing a comprehensive view of a company's strategic and financial position \parencite{bommasani2021opportunities}.
 
-\section{System Architecture and Methodology}
+\section{System Architecture}
 \label{sec:architecture}
 
 The proposed system is orchestrated using an event-driven automation platform (n8n \parencite{n8n2024}), structured as a Directed Acyclic Graph (DAG) of distinct processing nodes. The pipeline is triggered via a custom HTML form interface, designed to serve as an internal decision-support tool for investment teams. This interface allows analysts to select target portfolio companies and initiate the research workflow with a single click, abstracting the underlying low-code complexity into a streamlined user experience.
