@@ -1,6 +1,6 @@
 \documentclass[12pt]{article}
 
-\usepackage[T1]{fontenc}
+\usepackage{fontenc}
 \usepackage{lmodern}
 \usepackage[utf8]{inputenc}
 \usepackage[american]{babel}
@@ -58,7 +58,7 @@
 % Authors & affiliations 
 \usepackage{authblk}
 \makeatletter
-\newcommand{\samethanks}[1][\value{footnote}]{\footnotemark[#1]}
+\newcommand{\samethanks}[2][\value{footnote}]{\footnotemark[#1]}
 \makeatother
 
 % Bibliography (APA, author-year)
@@ -80,9 +80,9 @@
 
 % Metadata
 \title{A Multi-Agent Orchestration Framework for Venture Capital Due Diligence}
-\author[1]{Grigorios Alexandrou}
-\author[1]{Katerina Pramatari\thanks{Supervising professor.}}
-\affil[1]{Department of Management Science and Technology, 
+\author[2]{Grigorios Alexandrou}
+\author[2]{Katerina Pramatari\thanks{Supervising professor.}}
+\affil[2]{Department of Management Science and Technology, 
 Athens University of Economics and Business (AUEB), Athens, Greece}
 \date{March 2026}
 
@@ -116,16 +116,16 @@ The primary contributions of this paper focus on the design of a modular, multi-
 
 Recent advancements in Artificial Intelligence have shifted the focus from monolithic model interactions to Agentic Workflows, where the primary objective is to move beyond static prompting toward autonomous goal-seeking behavior \parencite{xi2023rise}. In a multi-agent system, multiple LLM-powered entities are assigned distinct roles, system prompts, and specialized tool-use capabilities. This modular approach allows for the construction of complex reasoning chains, where the output of one agent serves as the verified input for another, significantly reducing error rates and improving logical consistency. Such architectures are increasingly utilized to solve multi-step problems that require a high degree of precision and iterative refinement, which are common in analytical domains \parencite{wu2023autogen}.
 
-The application of these systems in the financial sector has gained significant traction, as traditional models often struggle with the specialized vocabulary and numerical sensitivity required for investment analysis \parencite{yang2023fingpt}. Researchers have demonstrated that LLMs can be effectively specialized for financial tasks through instruction tuning and the integration of real-time data streams, allowing for more nuanced risk assessment and market sentiment analysis \parencite{wu2023bloomberggpt}. These developments underscore the transition from general-purpose AI to task-specific agentic frameworks that can handle the rigorous demands of professional financial environments.
+The application of these systems in the financial sector has gained significant traction, as traditional models often struggle with the specialized vocabulary and numerical sensitivity required for investment analysis \parencite{yang2023fingpt}. Researchers have demonstrated that LLMs can be effectively specialized for financial tasks through instruction tuning and the integration of real-time data streams, allowing for more nuanced risk assessment and market sentiment analysis \parencite{wu2023bloomberggpt}. Recent frameworks such as MARAG-Fin and QuantAgents demonstrate that distributing analytical tasks among specialized agents further improves predictive accuracy and mitigates hallucinations in highly dynamic markets \parencite{maragfin2025, li2025quantagents}. These developments underscore the transition from general-purpose AI to task-specific agentic frameworks that can handle the rigorous demands of professional financial environments.
 
 Parallel to the rise of agentic orchestration, dynamic information retrieval has emerged as a critical solution to the static knowledge constraints of LLMs. By grounding model generation in real-time search results and external data streams, systems can overcome the inherent limitations of training data cut-offs \parencite{lewis2020retrieval}. In the context of corporate intelligence, Open-Source Intelligence (OSINT) becomes indispensable for acquiring up-to-date market sizes, tracking recent funding rounds, and monitoring competitor movements. This paradigm, often referred to as Retrieval-Augmented Generation, ensures that the generated intelligence is not only current but also verifiable through direct links to primary sources \parencite{gao2023retrieval}.
 
-Furthermore, the integration of automated document processing and Optical Character Recognition (OCR) has expanded the reach of AI agents into the domain of non-digitized corporate records. The ability to programmatically parse and interpret complex financial layouts, including balance sheets and income statements, allows AI systems to transform legacy data into structured, machine-readable formats \parencite{smith2007overview}. By combining these diverse technological layers, modern workflows can now autonomously bridge the gap between fragmented web signals and formal regulatory filings, providing a comprehensive view of a company's strategic and financial position \parencite{bommasani2021opportunities}.
+Furthermore, the integration of automated document processing and Optical Character Recognition (OCR) has expanded the reach of AI agents into the domain of non-digitized corporate records. The ability to programmatically parse and interpret complex financial layouts, including balance sheets and income statements, allows AI systems to transform legacy data into structured, machine-readable formats without the structural loss typical of legacy OCR engines \parencite{paruchuri2025marker}. By combining these diverse technological layers, modern workflows can now autonomously bridge the gap between fragmented web signals and formal regulatory filings, providing a comprehensive view of a company's strategic and financial position \parencite{bommasani2021opportunities}.
 
 \section{System Architecture}
 \label{sec:architecture}
 
-The proposed system is orchestrated using an event-driven automation platform (n8n \parencite{n8n2024}), structured as a Directed Acyclic Graph (DAG) of distinct processing nodes. The pipeline is triggered via a custom HTML form interface, designed to serve as an internal decision-support tool for investment teams. This interface allows analysts to select target portfolio companies and initiate the research workflow with a single click, abstracting the underlying low-code complexity into a streamlined user experience.
+The proposed system is orchestrated using an event-driven automation platform \parencite{n8n2024}, structured as a Directed Acyclic Graph (DAG) of distinct processing nodes. The pipeline is triggered via a custom HTML form interface, designed to serve as an internal decision-support tool for investment teams. This interface allows analysts to select target portfolio companies and initiate the research workflow with a single click, abstracting the underlying low-code complexity into a streamlined user experience.
 
 \begin{figure}[htbp]
   \centering
@@ -143,13 +143,13 @@ To gather real-time market data, the architecture employs a suite of specialized
 \subsection{Financial Data Retrieval and Fallback Mechanisms}
 \label{sec:financials}
 
-The core engineering complexity of the pipeline lies in its ability to efficiently interface with official state registries, specifically the Greek Business Registry ($\Gamma$.E.MH.). While the registry provides an official API, to bypass the administrative overhead of obtaining authenticated credentials, this framework adopts a reverse-engineering approach by leveraging the platform's frontend-to-backend communication.
+The core engineering complexity of the pipeline lies in its ability to efficiently interface with official state registries, specifically the Greek Business Registry ($\Gamma$.E.MH.). While the registry provides an official API, to bypass the administrative overhead of obtaining authenticated credentials, this framework adopts a reverse-engineering approach by leveraging the platform's frontend-to-backend communication, a methodology successfully validated by recent open-source initiatives targeting the same registry \parencite{drakakis2025govdoc}.
 
 Financial data and corporate announcements in $\Gamma$.E.MH. are predominantly available as PDF documents, loaded dynamically by the public portal via specific backend endpoints. The workflow employs a conditional logic router (Switch/If nodes) to check for the existence of a valid registry number (arGEMI). If present, an HTTP Request node programmatically mimics the browser's behavior, directly querying these endpoints to retrieve the dynamic JSON payload containing the required document IDs.
 
 The system isolates the relevant document IDs and categorizes them into two streams: \textbf{Corporate Modifications (Announcements)}, which cover records regarding board changes, capital increases, and statutory modifications; and \textbf{Financial Statements}, comprising official balance sheets, income statements, and auditor reports.
 
-The pipeline fetches the raw PDF files (prioritizing the most recent fiscal years) and routes them through a specialized API to perform text extraction and OCR \parencite{smith2007overview}. The extracted raw text is then processed by two dedicated summarization models (\textbf{AI FinSummary} and \textbf{AI ModSummary}) which distill the unstructured text into standardized financial metrics (e.g., Assets, Liabilities, Revenue, EBIT) while preserving source citations.
+The pipeline fetches the raw PDF files (prioritizing the most recent fiscal years) and routes them through a PDF text extraction utility to perform layout-aware text extraction \parencite{paruchuri2025marker}. The extracted raw text is then processed by two dedicated summarization models (\textbf{AI FinSummary} and \textbf{AI ModSummary}) which distill the unstructured text into standardized financial metrics (e.g., Assets, Liabilities, Revenue, EBIT) while preserving source citations.
 
 A critical requirement for automated due diligence is the strict prevention of fabricated financial data. To achieve this, the pipeline incorporates an \textbf{Alternative Financials} agent. If the initial routing determines that the target company lacks a $\Gamma$.E.MH. number (e.g., companies incorporated abroad), the official registry branch is bypassed. Instead, the Alternative Financials agent is activated to retrieve verifiable financial footprints from trusted open-source databases (e.g., Crunchbase, Dealroom). If no verifiable data is found, the agent explicitly outputs a ``Not Found'' flag, ensuring the final report reflects true visibility gaps rather than hallucinated metrics.
 
@@ -163,11 +163,11 @@ Finally, a specialized formatting node within the low-code environment structure
 \section{Future Work}
 \label{sec:future}
 
-Future work will focus on three primary directions. First, the system will be extended to integrate directly with the fund's internal portfolio database, enabling each research report to be enriched with proprietary deal-level data, historical performance metrics, and internal analyst notes specific to each startup. This would transform the pipeline from a general-purpose research tool into a deeply contextualized decision-support system. Second, the scope of official registry coverage will be broadened to include international business registries, such as the UK Companies House and equivalent European authorities, allowing the framework to support due diligence on companies incorporated outside Greece. Third, the current dependency on a third-party commercial API for PDF text extraction will be replaced with a self-hosted, open-source document processing solution, reducing operational costs and eliminating external dependencies while maintaining equivalent extraction quality.
+Future work will focus on three primary directions. First, the system will be extended to integrate directly with the fund's internal portfolio database, enabling each research report to be enriched with proprietary deal-level data, historical performance metrics, and internal analyst notes specific to each startup. This would transform the pipeline from a general-purpose research tool into a deeply contextualized decision-support system. Second, the scope of official registry coverage will be broadened to include international business registries, such as the UK Companies House \parencite{companieshouse2025} and equivalent European authorities, allowing the framework to support due diligence on companies incorporated outside Greece. Third, the current dependency on a third-party commercial API for PDF text extraction will be replaced with a self-hosted, open-source document processing solution, reducing operational costs and eliminating external dependencies while maintaining equivalent extraction quality.
 
 \section{Data and Workflow Availability}
 \label{sec:data}
-To ensure the reproducibility of this study, all system artifacts, specifically the n8n JSON workflow files, project documentation, and an explanatory video walk-through, have been made publicly available through a dedicated repository \parencite{alexandrou2026due}. It is strongly recommended that users consult the technical documentation within the repository to understand the specific environment variables and node configurations required for successful replication.
+To ensure the reproducibility of this study, all system artifacts, specifically the n8n JSON workflow file, project documentation, and an explanatory video walk-through, have been made publicly available through a dedicated repository \parencite{alexandrou2026due}. It is strongly recommended that users consult the technical documentation within the repository to understand the specific environment variables and node configurations required for successful replication.
 
 \section{Conclusion}
 \label{sec:conclusion}
