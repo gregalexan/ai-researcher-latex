@@ -138,77 +138,167 @@ The proposed system is orchestrated using an event-driven automation platform \p
 %   \label{fig:architecture}
 % \end{figure}
 
+% \begin{figure}[htbp]
+%   \centering
+%   \resizebox{\linewidth}{!}{%
+%     \begin{tikzpicture}[
+%         node distance=0.55cm and 0.4cm,
+%         mybox/.style={rectangle, rounded corners=4pt, draw=gray!60, fill=white,
+%             text width=#1, align=center, font=\small, inner sep=5pt, minimum height=1.1cm},
+%         mybox/.default=3.8cm,
+%         arr/.style={->, >=stealth, thick, gray!70},
+%         lbl/.style={font=\footnotesize\itshape, gray},
+%       ]
+%       \node[mybox=5cm, fill=gray!10, draw=gray!50] (trigger)
+%       {\textbf{HTML form trigger}\\[2pt]{\footnotesize Analyst selects company}};
+%       \node[mybox=10cm, fill=purple!8, draw=purple!40, below=of trigger] (intake)
+%       {\textbf{3.1\;Data Intake \& Context Initialization}\\[2pt]
+%       {\footnotesize Webhook $\rightarrow$ JSON company DB $\rightarrow$ AI Context Agent}};
+%       \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
+%       below=0.9cm of intake, xshift=-3.6cm] (mapper)
+%       {\textbf{AI Source Mapper}\\[2pt]{\footnotesize Identifies sources}};
+%       \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
+%       right=0.35cm of mapper] (sector)
+%       {\textbf{AI Sector}\\[2pt]{\footnotesize Market sizing}};
+%       \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
+%       right=0.35cm of sector] (competition)
+%       {\textbf{AI Competition}\\[2pt]{\footnotesize Competitor landscape}};
+%       \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
+%       right=0.35cm of competition] (news)
+%       {\textbf{AI News}\\[2pt]{\footnotesize Recent developments}};
+%       \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
+%       right=0.35cm of news] (signals)
+%       {\textbf{AI Signals}\\[2pt]{\footnotesize Investment signals}};
+%       \begin{scope}[on background layer]
+%         \node[rectangle, rounded corners=6pt, draw=teal!60, fill=teal!8, inner sep=8pt,
+%           fit=(mapper)(sector)(competition)(news)(signals),
+%           label={[font=\small\bfseries, teal!70!black]above:3.2\;Market \& Competitive Intelligence (Perplexity Sonar API)}]
+%         (group32) {};
+%       \end{scope}
+%       \node[mybox=3.8cm, fill=orange!10, draw=orange!50,
+%       below=1.1cm of group32, xshift=-2.8cm] (gemh)
+%       {\textbf{$\Gamma$.E.MH.\ Module}\\[2pt]
+%       {\footnotesize Endpoint query \& OCR}};
+%       \node[mybox=3.8cm, fill=orange!10, draw=orange!50,
+%       right=0.6cm of gemh] (decision)
+%       {\textbf{arGEMI number?}\\[2pt]
+%       {\footnotesize Conditional router}};
+%       \node[mybox=3.8cm, fill=orange!10, draw=orange!50,
+%       right=0.6cm of decision] (altfin)
+%       {\textbf{Alt.\ Financials}\\[2pt]
+%       {\footnotesize Crunchbase / Dealroom\\\textit{or} ``Not Found'' flag}};
+%       \begin{scope}[on background layer]
+%         \node[rectangle, rounded corners=6pt, draw=orange!60, fill=orange!8, inner sep=8pt,
+%           fit=(gemh)(decision)(altfin),
+%           label={[font=\small\bfseries, orange!70!black]above:3.3\;Financial Data Retrieval \& Fallback}]
+%         (group33) {};
+%       \end{scope}
+%       \node[mybox=12cm, fill=red!7, draw=red!35,
+%       below=1.1cm of group33] (synthesis)
+%       {\textbf{3.4\;Synthesis \& Output Generation}\\[2pt]
+%       {\footnotesize AI Researcher $\rightarrow$ AI Analyst $\rightarrow$ AI Overall Company Info $\rightarrow$ HTML report $\rightarrow$ Gmail}};
+%       \draw[arr] (trigger)  -- (intake);
+%       \draw[arr] (intake)   -- (group32);
+%       \draw[arr] (group32)  -- (group33);
+%       \draw[arr] (decision) -- node[lbl, above]{Yes} (gemh);
+%       \draw[arr] (decision) -- node[lbl, above]{No}  (altfin);
+%       \draw[arr] (gemh)   |- ([yshift=-0.45cm]group33.south) -| ([xshift=-1cm]synthesis.north);
+%       \draw[arr] (altfin) |- ([yshift=-0.45cm]group33.south) -| ([xshift=+1cm]synthesis.north);
+%     \end{tikzpicture}%
+%   }
+%   \caption{High-level overview of the event-driven multi-agent orchestration architecture, structured according to the four pipeline stages described in Sections~\ref{sec:architecture}--\ref{sec:output}.}
+%   \label{fig:architecture}
+% \end{figure}
+
 \begin{figure}[htbp]
   \centering
-  \resizebox{\linewidth}{!}{%
-    \begin{tikzpicture}[
-        node distance=0.55cm and 0.4cm,
-        mybox/.style={rectangle, rounded corners=4pt, draw=gray!60, fill=white,
-            text width=#1, align=center, font=\small, inner sep=5pt, minimum height=1.1cm},
-        mybox/.default=3.8cm,
-        arr/.style={->, >=stealth, thick, gray!70},
-        lbl/.style={font=\footnotesize\itshape, gray},
-      ]
-      \node[mybox=5cm, fill=gray!10, draw=gray!50] (trigger)
-      {\textbf{HTML form trigger}\\[2pt]{\footnotesize Analyst selects company}};
-      \node[mybox=10cm, fill=purple!8, draw=purple!40, below=of trigger] (intake)
-      {\textbf{3.1\;Data Intake \& Context Initialization}\\[2pt]
-      {\footnotesize Webhook $\rightarrow$ JSON company DB $\rightarrow$ AI Context Agent}};
-      \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
-      below=0.9cm of intake, xshift=-3.6cm] (mapper)
-      {\textbf{AI Source Mapper}\\[2pt]{\footnotesize Identifies sources}};
-      \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
-      right=0.35cm of mapper] (sector)
-      {\textbf{AI Sector}\\[2pt]{\footnotesize Market sizing}};
-      \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
-      right=0.35cm of sector] (competition)
-      {\textbf{AI Competition}\\[2pt]{\footnotesize Competitor landscape}};
-      \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
-      right=0.35cm of competition] (news)
-      {\textbf{AI News}\\[2pt]{\footnotesize Recent developments}};
-      \node[mybox=2.4cm, fill=teal!10, draw=teal!50,
-      right=0.35cm of news] (signals)
-      {\textbf{AI Signals}\\[2pt]{\footnotesize Investment signals}};
-      \begin{scope}[on background layer]
-        \node[rectangle, rounded corners=6pt, draw=teal!60, fill=teal!8, inner sep=8pt,
-          fit=(mapper)(sector)(competition)(news)(signals),
-          label={[font=\small\bfseries, teal!70!black]above:3.2\;Market \& Competitive Intelligence (Perplexity Sonar API)}]
-        (group32) {};
-      \end{scope}
-      \node[mybox=3.8cm, fill=orange!10, draw=orange!50,
-      below=1.1cm of group32, xshift=-2.8cm] (gemh)
-      {\textbf{$\Gamma$.E.MH.\ Module}\\[2pt]
-      {\footnotesize Endpoint query \& OCR}};
-      \node[mybox=3.8cm, fill=orange!10, draw=orange!50,
-      right=0.6cm of gemh] (decision)
-      {\textbf{arGEMI number?}\\[2pt]
-      {\footnotesize Conditional router}};
-      \node[mybox=3.8cm, fill=orange!10, draw=orange!50,
-      right=0.6cm of decision] (altfin)
-      {\textbf{Alt.\ Financials}\\[2pt]
-      {\footnotesize Crunchbase / Dealroom\\\textit{or} ``Not Found'' flag}};
-      \begin{scope}[on background layer]
-        \node[rectangle, rounded corners=6pt, draw=orange!60, fill=orange!8, inner sep=8pt,
-          fit=(gemh)(decision)(altfin),
-          label={[font=\small\bfseries, orange!70!black]above:3.3\;Financial Data Retrieval \& Fallback}]
-        (group33) {};
-      \end{scope}
-      \node[mybox=12cm, fill=red!7, draw=red!35,
-      below=1.1cm of group33] (synthesis)
-      {\textbf{3.4\;Synthesis \& Output Generation}\\[2pt]
-      {\footnotesize AI Researcher $\rightarrow$ AI Analyst $\rightarrow$ AI Overall Company Info $\rightarrow$ HTML report $\rightarrow$ Gmail}};
-      \draw[arr] (trigger)  -- (intake);
-      \draw[arr] (intake)   -- (group32);
-      \draw[arr] (group32)  -- (group33);
-      \draw[arr] (decision) -- node[lbl, above]{Yes} (gemh);
-      \draw[arr] (decision) -- node[lbl, above]{No}  (altfin);
-      \draw[arr] (gemh)   |- ([yshift=-0.45cm]group33.south) -| ([xshift=-1cm]synthesis.north);
-      \draw[arr] (altfin) |- ([yshift=-0.45cm]group33.south) -| ([xshift=+1cm]synthesis.north);
-    \end{tikzpicture}%
-  }
-  \caption{High-level overview of the event-driven multi-agent orchestration architecture, structured according to the four pipeline stages described in Sections~\ref{sec:architecture}--\ref{sec:output}.}
+  \begin{tikzpicture}[
+      arr/.style={->, >=stealth, semithick, black!55},
+      lbl/.style={draw=none, fill=none, font=\scriptsize\itshape,
+          black!65, inner sep=1pt},
+      boxnode/.style={rectangle, rounded corners=4pt, draw=gray!55,
+          fill=white, align=center, font=\small, inner sep=6pt},
+    ]
+
+    %% ── TRIGGER  (y=0) ──────────────────────────────────────────────────────
+    \node[boxnode, text width=6cm] at (0, 0) (trigger)
+    {\textbf{HTML Form Trigger}\\[2pt]
+    {\footnotesize Analyst selects portfolio company}};
+
+    %% ── 3.1  (y=-2.2) ───────────────────────────────────────────────────────
+    \node[boxnode, text width=12cm] at (0, -2.2) (intake)
+    {\textbf{3.1 \; Data Intake \& Context Initialization}\\[3pt]
+    {\footnotesize Webhook $\;\rightarrow\;$ JSON Company DB
+    $\;\rightarrow\;$ \textbf{AI Context Agent}}};
+
+    %% ── 3.2 agents  (y=-5.5, leaving room for group label at y≈-4.0) ───────
+    \node[boxnode, text width=2.5cm, font=\footnotesize] at (-6.5, -5.5) (mapper)
+    {\textbf{AI Source Mapper}\\[2pt]{\scriptsize Identifies sources}};
+    \node[boxnode, text width=2.2cm, font=\footnotesize] at (-3.5, -5.5) (sector)
+    {\textbf{AI Sector}\\[2pt]{\scriptsize Market sizing}};
+    \node[boxnode, text width=3.5cm, font=\footnotesize] at ( 0.0, -5.5) (competition)
+    {\textbf{AI Competition}\\[2pt]{\scriptsize Competitor landscape}};
+    \node[boxnode, text width=2.2cm, font=\footnotesize] at ( 3.5, -5.5) (news)
+    {\textbf{AI News}\\[2pt]{\scriptsize Recent news}};
+    \node[boxnode, text width=2.5cm, font=\footnotesize] at ( 6.5, -5.5) (signals)
+    {\textbf{AI Signals}\\[2pt]{\scriptsize Investment signals}};
+
+    \begin{scope}[on background layer]
+      \node[draw=gray!50, fill=white, dashed, rounded corners=5pt,
+        inner sep=17pt,
+        fit=(mapper)(sector)(competition)(news)(signals),
+        label={[draw=none, fill=none, font=\small\bfseries, black!60,
+                anchor=south, yshift=2pt]above:%
+            3.2 \; Market \& Competitive Intelligence
+          }]
+      (group32){};
+    \end{scope}
+
+    %% ── 3.3 nodes  (y=-9.5, leaving room for group label at y≈-7.8) ────────
+    \node[boxnode, text width=3.5cm, font=\footnotesize] at (-5.0, -9.5) (gemh)
+    {\textbf{$\Gamma$.E.MH.\ Module}\\[2pt]
+    {\scriptsize Endpoint query, OCR \& Financial Analysis}};
+    \node[boxnode, text width=3.5cm, font=\footnotesize] at ( 0.0,  -9.5) (router)
+    {\textbf{Exists on $\Gamma$.E.MH.?}\\[2pt]
+    {\scriptsize Conditional router}};
+    \node[boxnode, text width=3.5cm, font=\footnotesize] at ( 5.0, -9.5) (altfin)
+    {\textbf{Alt.\ Financials}\\[2pt]
+    {\scriptsize Crunchbase / Dealroom\\
+    \textit{or} ``Not Found'' flag}};
+
+    \begin{scope}[on background layer]
+      \node[draw=gray!50, fill=white, dashed, rounded corners=5pt,
+        inner sep=12pt,
+        fit=(gemh)(router)(altfin),
+        label={[draw=none, fill=none, font=\small\bfseries, black!60,
+                anchor=south, yshift=2pt]above:%
+            3.3 \; Financial Data Retrieval \& Fallback}]
+      (group33){};
+    \end{scope}
+
+    %% ── 3.4  (y=-13.0) ──────────────────────────────────────────────────────
+    \node[boxnode, text width=12cm] at (0, -12.5) (synthesis)
+    {\textbf{3.4 \; Synthesis \& Output Generation}\\[3pt]
+    {\footnotesize \textbf{AI Researcher} $\;\rightarrow\;$
+    \textbf{AI Analyst} $\;\rightarrow\;$
+    \textbf{AI Overall Company Info}
+    $\;\rightarrow\;$ HTML report $\;\rightarrow\;$ Gmail}};
+
+    %% ── ARROWS ──────────────────────────────────────────────────────────────
+    \draw[arr] (trigger)       -- (intake);
+    \draw[arr] (intake)        -- (group32.north);
+    \draw[arr] (group32.south) -- (router.north);
+    \draw[arr] (router.west)   -- node[lbl, above]{Yes} (gemh.east);
+    \draw[arr] (router.east)   -- node[lbl, above]{No}  (altfin.west);
+    \draw[arr] (group33.south) -- (synthesis.north);
+
+  \end{tikzpicture}
+  \caption{High-level overview of the event-driven multi-agent orchestration
+    architecture, structured according to the four pipeline stages described
+    in Sections~\ref{sec:architecture}--\ref{sec:output}.}
   \label{fig:architecture}
 \end{figure}
+
 
 \subsection{Data Intake and Context Initialization}
 Upon submission, a Webhook node captures the payload. A logic-based transformation node maps the selected company to a pre-scraped JSON database containing baseline attributes (e.g., founders, sector, initial investment year, headquarters, and registration numbers). This structured data is fed into the \textbf{AI Context Agent}, which synthesizes a concise foundational profile to ground the subsequent research nodes.
