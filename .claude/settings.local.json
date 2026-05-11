@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(latexmk --version)",
+      "Bash(where latexmk *)",
+      "Bash(make)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(make clean *)",
+      "Bash(latexmk -pdf -interaction=nonstopmode -halt-on-error -g main.tex)"
+    ]
+  }
+}

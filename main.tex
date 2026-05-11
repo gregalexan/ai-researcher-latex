@@ -141,7 +141,7 @@ ability to autonomously query external databases, invoke APIs, or parse scanned 
 documents; frameworks that enable tool use and inter-agent communication are required to bridge
 this gap \parencite{wu2023autogen}.
 
-We address these problems with a fully automated multi-agent orchestration pipeline. Rather than a
+We address these problems with an event-driven multi-agent orchestration pipeline. Rather than a
 single LLM prompt, the system decomposes due diligence into specialized sub-tasks handled by
 distinct AI agents \parencite{xi2023rise}. Real-time search APIs supply current market
 intelligence; a custom extraction module programmatically retrieves and parses official financial
@@ -371,60 +371,53 @@ external market footprint.
 A formatting node converts the JSON outputs into a styled HTML report and delivers it to the
 requesting analyst through a Gmail API integration.
 
-\section{System Demonstration}
-\label{sec:demonstration}
+\section{Report Structure and Fallback Behavior}
+\label{sec:report}
 
-To illustrate end-to-end pipeline behavior, we trace a representative execution for a
-Greek-incorporated FinTech startup registered on $\Gamma$.E.MH.
+The final artifact of the pipeline is a structured HTML report delivered by email. Its sections
+map directly to the agent layer that produced them, making the provenance of each claim traceable
+to a specific intelligence stream.
 
-\subsection{Trigger and Context Initialization}
+\subsection{Report Anatomy}
 
-An analyst opens the HTML front-end, selects the target company from the portfolio list, and
-submits the form. The Webhook node captures the payload and routes it to the transformation node,
-which retrieves baseline company attributes from the JSON database---sector classification,
-founding year, headquarters, and $\Gamma$.E.MH.\ registration number (\textit{arGEMI}). The
-\textbf{AI Context Agent} synthesizes these attributes into a compact structured profile that
-anchors all downstream reasoning nodes to a consistent factual baseline before any external API is
-queried.
+The report opens with a \textbf{Company Overview} produced by the \textbf{AI Overall Company Info}
+agent: a concise external-facing summary of the portfolio company's market position, value
+proposition, and competitive footprint as reflected in publicly available signals. This section is
+intentionally written to be shareable with founders as a reflection of their external presence.
 
-\subsection{Parallel Market Intelligence Retrieval}
+The \textbf{Market Intelligence} block covers current market sizing and trajectory, macro-
+regulatory dynamics, and a timeline of recent strategic events (funding announcements, product
+launches, partnerships). Each claim carries an inline citation to the underlying Perplexity Sonar
+source retrieved by the \textbf{AI Sector} and \textbf{AI News} agents.
 
-The \textbf{AI Source Mapper} identifies the highest-signal information sources for the FinTech
-sector---specialist databases, regulatory portals, and news aggregators---and propagates them to
-the five parallel agents. Working concurrently via the Perplexity Sonar Deep Research API
-\parencite{perplexity2024sonar}, the \textbf{AI Sector} agent returns current market sizing
-estimates and macro-regulatory trends; the \textbf{AI Competition} agent identifies and classifies
-competitors as direct, adjacent, or niche innovators; the \textbf{AI News} agent surfaces recent
-strategic events such as funding announcements and product launches; the \textbf{AI Signals} agent
-extracts quantifiable investment indicators. The merged outputs of all five agents form the market
-intelligence payload passed to the financial retrieval stage.
+The \textbf{Competitive Landscape} section, contributed by the \textbf{AI Competition} agent,
+classifies identified competitors into three tiers---direct, adjacent, and niche innovators---with
+funding status, activity signals, and a positioning summary relative to the portfolio company.
 
-\subsection{Financial Data Retrieval from \texorpdfstring{$\Gamma$.E.MH.}{GEMH}}
+The \textbf{Financial Summary} presents the structured line items extracted from $\Gamma$.E.MH.\
+official filings: Revenue, Total Assets, Total Liabilities, and EBIT across available fiscal
+years, each cited to the source PDF and page number extracted by the \textbf{AI FinSummary} agent.
+A \textbf{Corporate Events} timeline, produced by \textbf{AI ModSummary}, lists statutory changes
+such as capital increases and board amendments in chronological order. When registry data is
+unavailable, this block displays either a structured entry from Crunchbase or Dealroom, or an
+explicit ``Not Found'' flag (see Section~\ref{sec:financials}).
 
-The conditional router detects a valid \textit{arGEMI} and directs execution to the
-$\Gamma$.E.MH.\ module. An HTTP Request node queries the registry's backend endpoint, returning a
-JSON manifest of available document IDs. The classifier separates \textbf{Financial
-Statements}---balance sheets and income statements across available fiscal years---from
-\textbf{Corporate Modifications} such as capital increases and board resolutions. The pipeline
-fetches the corresponding PDFs, which are processed by the layout-aware OCR extractor
-\parencite{paruchuri2025marker}. The \textbf{AI FinSummary} agent structures the extracted text
-into four standardized line items per fiscal year (Revenue, Total Assets, Total Liabilities,
-EBIT), preserving direct citations to source document and page number. The \textbf{AI ModSummary}
-agent produces a chronological timeline of structural corporate events. Because all figures
-originate from official regulatory filings, no generative estimation is required at any stage.
+The report closes with an \textbf{Analyst Assessment} from the \textbf{AI Analyst} agent:
+an Executive Summary, attractiveness scores across market timing and product differentiation
+dimensions, and 30-to-180-day action recommendations addressed separately to the fund and to the
+portfolio company.
 
-\subsection{Synthesis and Report Delivery}
+\subsection{Fallback Behavior in Practice}
 
-The three synthesis agents receive the merged intelligence streams. The \textbf{AI Researcher}
-integrates market, competitive, news, and financial signals into a strategic research note that
-surfaces recent developments alongside identified analytical blind spots. The \textbf{AI Analyst}
-converts this note into an Executive Summary, assigns attractiveness scores across market timing
-and product differentiation dimensions, and drafts 30-to-180-day action recommendations for both
-the fund and the portfolio company. The \textbf{AI Overall Company Info} agent generates a
-founder-facing summary of the company's external market position. A formatting node assembles the
-JSON outputs into a styled HTML report, which the Gmail integration delivers directly to the
-requesting analyst---completing the full pipeline from form submission to delivered report without
-any intermediate human action required.
+The structural fallback is directly observable in the report output. When a company holds no valid
+\textit{arGEMI}---typically because it is incorporated abroad---the Financial Summary block
+displays a ``Not Found'' flag rather than any generated estimate. This flag is rendered with the
+same formatting as a populated entry, making the data gap explicit and immediately visible to the
+analyst. The design reflects a deliberate trade-off: a missing figure is less harmful to
+investment analysis than a plausible but unverifiable one. Analysts can therefore immediately
+distinguish registry-sourced figures (auditable, official) from open-source approximations
+(Crunchbase, Dealroom) from explicit gaps---three distinct epistemic states that the system
+surfaces without conflating them.
 
 \section{Limitations}
 \label{sec:limitations}
@@ -445,9 +438,9 @@ synthesis outputs, and the variability of the generated sections is currently un
 \label{sec:data}
 
 All system artifacts are publicly available in a dedicated repository
-\parencite{alexandrou2026due}: the n8n JSON workflow file, project documentation, and an
-explanatory video walk-through. Consult the repository documentation for the required environment
-variables and node configurations before attempting replication.
+\parencite{alexandrou2026due}: the n8n JSON workflow file and setup documentation. The repository
+README details the required credentials and node configuration necessary for replication on a
+self-hosted or cloud n8n instance.
 
 \section{Conclusions and Future Work}
 \label{sec:conclusion}
@@ -467,6 +460,13 @@ rather than generic. Second, adding international registries---such as UK Compan
 extraction coverage to companies incorporated outside Greece. Third, replacing the third-party PDF
 extraction service with a self-hosted open-source alternative would reduce operational costs and
 remove the external dependency without degrading extraction quality.
+
+\section*{Acknowledgments}
+
+The authors thank the team at Uni.Fund for providing the operational context in which this system
+was developed and deployed, and for their feedback on the generated reports. This work was carried
+out at the Department of Management Science and Technology, Athens University of Economics and
+Business (AUEB).
 
 \printbibliography
 
