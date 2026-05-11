@@ -52,8 +52,6 @@
 % Colors
 \usepackage{xcolor}
 
-% Placeholder command — replace every \fillme{...} with a real measured value before submission
-\newcommand{\fillme}[1]{\textcolor{red}{\textbf{[#1]}}}
 
 % Captions
 \captionsetup{
@@ -117,10 +115,8 @@ Athens University of Economics and Business (AUEB), Athens, Greece}
   Business Registry ($\Gamma$.E.MH.), querying dynamic endpoints to retrieve official financial
   filings that are then parsed using a layout-aware OCR extractor. A structural fallback mechanism
   explicitly flags data absence rather than generating unverified figures, directly targeting
-  hallucination in financial contexts. In a preliminary evaluation over \fillme{N} portfolio
-  companies, the pipeline reduces analyst desk-research time by approximately \fillme{X}\% and
-  achieves \fillme{Y}\% accuracy on financial figure extraction relative to ground-truth manual
-  transcription. All workflow artifacts are publicly available to support replication.
+  hallucination in financial contexts. All workflow artifacts are publicly available to support
+  replication.
 \end{abstract}
 
 \textbf{Keywords:} AI agents; Multi-Agent Systems; Workflow Automation; Due Diligence; Venture
@@ -375,48 +371,60 @@ external market footprint.
 A formatting node converts the JSON outputs into a styled HTML report and delivers it to the
 requesting analyst through a Gmail API integration.
 
-\section{Preliminary Evaluation}
-\label{sec:evaluation}
+\section{System Demonstration}
+\label{sec:demonstration}
 
-\subsection{Experimental Setup}
+To illustrate end-to-end pipeline behavior, we trace a representative execution for a
+Greek-incorporated FinTech startup registered on $\Gamma$.E.MH.
 
-We evaluated the pipeline on \fillme{N} portfolio companies drawn from a single active Greek
-venture capital fund, spanning \fillme{sector list, e.g., FinTech, HealthTech, and B2B SaaS}.
-Of these, \fillme{n1} companies were registered on $\Gamma$.E.MH.\ and \fillme{n2} were
-incorporated abroad and therefore routed to the alternative financials branch. For each company, a
-senior analyst independently performed the equivalent manual desk-research task and recorded total
-elapsed time. Financial figures extracted by the pipeline were verified against manually
-transcribed ground-truth values taken directly from the official registry PDFs.
+\subsection{Trigger and Context Initialization}
 
-\subsection{Processing Efficiency}
+An analyst opens the HTML front-end, selects the target company from the portfolio list, and
+submits the form. The Webhook node captures the payload and routes it to the transformation node,
+which retrieves baseline company attributes from the JSON database---sector classification,
+founding year, headquarters, and $\Gamma$.E.MH.\ registration number (\textit{arGEMI}). The
+\textbf{AI Context Agent} synthesizes these attributes into a compact structured profile that
+anchors all downstream reasoning nodes to a consistent factual baseline before any external API is
+queried.
 
-The automated pipeline processed each company in an average of \fillme{X}~minutes (range:
-\fillme{min}--\fillme{max}~minutes), encompassing all API calls, OCR processing, and report
-generation. The equivalent manual task required an average of \fillme{Y}~hours per company (range:
-\fillme{min\_h}--\fillme{max\_h}~hours), yielding a time reduction of approximately \fillme{Z}\%.
-Variation in pipeline runtime was primarily driven by the number of financial documents retrieved
-from $\Gamma$.E.MH.\ and the volume of web search results returned by Perplexity Sonar.
+\subsection{Parallel Market Intelligence Retrieval}
 
-\subsection{Financial Extraction Accuracy}
+The \textbf{AI Source Mapper} identifies the highest-signal information sources for the FinTech
+sector---specialist databases, regulatory portals, and news aggregators---and propagates them to
+the five parallel agents. Working concurrently via the Perplexity Sonar Deep Research API
+\parencite{perplexity2024sonar}, the \textbf{AI Sector} agent returns current market sizing
+estimates and macro-regulatory trends; the \textbf{AI Competition} agent identifies and classifies
+competitors as direct, adjacent, or niche innovators; the \textbf{AI News} agent surfaces recent
+strategic events such as funding announcements and product launches; the \textbf{AI Signals} agent
+extracts quantifiable investment indicators. The merged outputs of all five agents form the market
+intelligence payload passed to the financial retrieval stage.
 
-For the \fillme{n1} companies with $\Gamma$.E.MH.\ registrations, the pipeline extracted up to
-four financial line items per fiscal year---Revenue, Total Assets, Total Liabilities, and
-EBIT---across the most recent \fillme{F} available fiscal years. Comparing pipeline output against
-manually transcribed ground-truth values, we observed an exact-match accuracy of \fillme{acc}\%
-within a 1\% rounding tolerance to account for unit conventions in official documents. The most
-frequent extraction errors involved \fillme{describe error pattern, e.g., row misalignment in
-multi-page consolidated balance sheets}. For the \fillme{n2} companies routed to the alternative
-financials branch, the pipeline correctly produced a ``Not Found'' flag in all cases where the
-open-source databases returned no data, avoiding any generated estimate.
+\subsection{Financial Data Retrieval from \texorpdfstring{$\Gamma$.E.MH.}{GEMH}}
 
-\subsection{Report Quality}
+The conditional router detects a valid \textit{arGEMI} and directs execution to the
+$\Gamma$.E.MH.\ module. An HTTP Request node queries the registry's backend endpoint, returning a
+JSON manifest of available document IDs. The classifier separates \textbf{Financial
+Statements}---balance sheets and income statements across available fiscal years---from
+\textbf{Corporate Modifications} such as capital increases and board resolutions. The pipeline
+fetches the corresponding PDFs, which are processed by the layout-aware OCR extractor
+\parencite{paruchuri2025marker}. The \textbf{AI FinSummary} agent structures the extracted text
+into four standardized line items per fiscal year (Revenue, Total Assets, Total Liabilities,
+EBIT), preserving direct citations to source document and page number. The \textbf{AI ModSummary}
+agent produces a chronological timeline of structural corporate events. Because all figures
+originate from official regulatory filings, no generative estimation is required at any stage.
 
-\fillme{K}~analysts from the fund independently rated each generated report on a five-point Likert
-scale across four dimensions: completeness of market intelligence, accuracy of the competitive
-landscape, usefulness of investment signals, and overall report quality. Mean ratings were
-\fillme{r1}/5, \fillme{r2}/5, \fillme{r3}/5, and \fillme{r4}/5 respectively. Analysts noted that
-\fillme{key qualitative finding, e.g., the competitive landscape section consistently required
-supplementary manual research for niche B2B sectors with limited online presence}.
+\subsection{Synthesis and Report Delivery}
+
+The three synthesis agents receive the merged intelligence streams. The \textbf{AI Researcher}
+integrates market, competitive, news, and financial signals into a strategic research note that
+surfaces recent developments alongside identified analytical blind spots. The \textbf{AI Analyst}
+converts this note into an Executive Summary, assigns attractiveness scores across market timing
+and product differentiation dimensions, and drafts 30-to-180-day action recommendations for both
+the fund and the portfolio company. The \textbf{AI Overall Company Info} agent generates a
+founder-facing summary of the company's external market position. A formatting node assembles the
+JSON outputs into a styled HTML report, which the Gmail integration delivers directly to the
+requesting analyst---completing the full pipeline from form submission to delivered report without
+any intermediate human action required.
 
 \section{Limitations}
 \label{sec:limitations}
@@ -427,8 +435,9 @@ registered abroad rely on open-source databases with lower coverage and less str
 Second, the pipeline depends on three external commercial services---Perplexity Sonar, the LLM
 provider, and the Marker PDF extractor---making it subject to pricing changes, rate limits, and
 interface updates; a production deployment should consider self-hosted alternatives for
-mission-critical components. Third, the preliminary evaluation covers \fillme{N} companies from a
-single fund, which may not generalize across investment stages, sectors, or geographies. Fourth,
+mission-critical components. Third, the current deployment has been applied within a single Greek venture capital fund;
+generalizability across investment stages, sectors, and geographies remains to be established
+through broader empirical evaluation. Fourth,
 LLM inference is non-deterministic: repeated runs on identical inputs may produce different
 synthesis outputs, and the variability of the generated sections is currently unquantified.
 
@@ -448,9 +457,7 @@ previously requiring human analysts. By combining dynamic web retrieval, reverse
 endpoint querying, and OCR-based document processing, the pipeline connects unstructured market
 signals to official financial compliance data in a single automated pass. Structural fallback
 mechanisms prevent the system from generating unverified financial figures, replacing potential
-hallucinations with explicit data gaps. A preliminary evaluation confirms that the pipeline
-substantially reduces analyst desk-research time while maintaining high accuracy on financial
-figure extraction from official registry documents.
+hallucinations with explicit data gaps.
 
 Three directions extend this work. First, integrating the pipeline with the fund's internal
 portfolio database would let each report draw on proprietary deal-level data, historical
