@@ -84,3 +84,7 @@
 Thumbs.db
 *.swp
 *~
+
+# Project-specific ignores
+FSDET x Grigoris.pdf
+other.tex
