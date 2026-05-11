@@ -1,0 +1,1256 @@
+{
+  "name": "Project",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "funding-form",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [
+        -2160,
+        560
+      ],
+      "id": "b3325ae5-25e2-4b7c-bcf8-16b065caa8b6",
+      "name": "Webhook",
+      "webhookId": "1a2ffaff-2225-48a1-a67f-ad03a245b138"
+    },
+    {
+      "parameters": {
+        "mode": "runOnceForEachItem",
+        "jsCode": "// const allCompanies = [\n//   {\n//     \"name\": \"B2Bwave\",\n//     \"link\": \"https://uni.fund/project/b2bwave/\",\n//     \"founders\": [\n//       \"Alex Seimanidis\",\n//       \"Kyriakos Liakopoulos\"\n//     ],\n//     \"website\": \"b2bwave.com\",\n//     \"founded\": \"2016\",\n//     \"sector\": \"Business Related Software\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"London UK\",\n//     \"description\": \"B2B e-commerce solution (SaaS) for wholesale distributors & manufacturers looking to automate their daily workflow online.B2B Wave is an all-in-one, easy, and personalized B2B e-commerce solution for wholesale distributors and manufacturers, which helps them easily set up their private B2B e-commerce portal, display their product catalogue, accept orders online, communicate with their customers, reduce their expenses and boost their sales.\"\n//   },\n//   {\n//     \"name\": \"Bespot\",\n//     \"link\": \"https://uni.fund/project/bespot/\",\n//     \"founders\": [\n//       \"Leon Gavalas\",\n//       \"Vasilis Stavrou\",\n//       \"Konstantinos Dimitros\",\n//       \"Anastasia Griva\"\n//     ],\n//     \"website\": \"bespot.com\",\n//     \"founded\": \"2018\",\n//     \"sector\": \"Data Analytics\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Athens GR\",\n//     \"description\": \"Bespot offers Location Fraud Detection and Insights for indoor and outdoor environments, using Analytics, Artificial Intelligence and IoT.Value-add1. In-Store Presence Verification & Analytics, utilizing Machine Learning on various signals (wifi/BLE) and achieving high accuracy in-store position identification accepted by the Regulator, in addition to extracting useful insights.2. Outdoor User Tracking, utilizing background location services, manual check-ins and location activated in-store services to collect visit details of a panel of consumers.\"\n//   },\n//   {\n//     \"name\": \"Bibecoffee\",\n//     \"link\": \"https://uni.fund/project/bibecoffee/\",\n//     \"founders\": [\n//       \"Vasilis Apostolopoulos\",\n//       \"Panos Vrettos\"\n//     ],\n//     \"website\": \"bibecoffee.com\",\n//     \"founded\": \"2018\",\n//     \"sector\": \"AI/IoT/Data\",\n//     \"first_investment\": \"2020\",\n//     \"hq\": \"London, UK\",\n//     \"description\": \"IoT real time monitoring solution for professional coffee machines that minimizes revenue loss, ensures maintenance efficiency and safeguards brand quality image.Through Bibe Apps, coffee distributors, coffee chains and coffee shop owners are now able to monitor their connected coffee machines’ usage and get an overview of coffee consumption data at a glance, even on-the-go.\"\n//   },\n//   {\n//     \"name\": \"Clio Muse\",\n//     \"link\": \"https://uni.fund/project/clio-muse/\",\n//     \"founders\": [\n//       \"Yiannis Nikolopoulos\",\n//       \"Daphne Tsevreni\",\n//       \"Andreas Fatouros\"\n//     ],\n//     \"website\": \"cliomusetours.com\",\n//     \"founded\": \"2014\",\n//     \"sector\": \"TravelTech\",\n//     \"first_investment\": \"2018\",\n//     \"hq\": \"Athens GR\",\n//     \"description\": \"Award-winning tour-guide platform that offers self-guided audio tours and virtual tour experiences for museums, temporary exhibitions and city walks in 15 countries.The company has invented a scalable way to produce high quality audio & virtual tours that help tour operators and Online Travel Agencies (OTAs) increase their upselling success rate. Through Clio Muse Tours platform, tourism & culture professionals create self-guided digital tours for top attractions & city walks.\"\n//   },\n//   {\n//     \"name\": \"Collegelink\",\n//     \"link\": \"https://uni.fund/project/collegelink/\",\n//     \"founders\": [\n//       \"Yannis Imelos\",\n//       \"Stefanos Alkidis\"\n//     ],\n//     \"website\": \"linq.co\",\n//     \"founded\": \"2016\",\n//     \"sector\": \"HRTech\",\n//     \"first_investment\": \"2018\",\n//     \"hq\": \"Athens, GR\",\n//     \"description\": \"A 360° Career Marketplace, helping candidates advance their career and companies hire great talent.\"\n//   },\n//   {\n//     \"name\": \"Convert Group\",\n//     \"link\": \"https://uni.fund/project/convert-group/\",\n//     \"founders\": [\n//       \"Panayotis Gezerlis\",\n//       \"Elena Chailazopoulou\"\n//     ],\n//     \"website\": \"www.convertgroup.com\",\n//     \"founded\": \"2014\",\n//     \"sector\": \"Data Analytics\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Athens GR\",\n//     \"description\": \"Leader in the Data & Analytics Market Intelligence frontier in the lucrative eCommerce sectors of online pharmacy, online grocery & online beauty.With the increasing importance of the online sales channel many brands, especially those belonging to multinational fast-moving-consumer-goods (FMCG) companies, faced an increasing need to get visibility for sales and market shares online, as it currently happens for the offline sales channels.\"\n//   },\n//   {\n//     \"name\": \"Edencore\",\n//     \"link\": \"https://uni.fund/project/edencore/\",\n//     \"founders\": [\n//       \"Nikos Mylonas\",\n//       \"Spyros Fountas\"\n//     ],\n//     \"website\": \"edenlibrary.ai\",\n//     \"founded\": \"2021\",\n//     \"sector\": \"Agritech\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Athens GR\",\n//     \"description\": \"Edencore is a pioneering Agri-tech company specializing in integrated software and hardware solutions aimed at enhancing precision farming practices for specialty crops, specifically fruits and vegetables. Leveraging cutting-edge technology, Edencore introduces a transformative approach to crop management and resource optimization.\"\n//   },\n//   {\n//     \"name\": \"Evo\",\n//     \"link\": \"https://uni.fund/project/evo/\",\n//     \"founders\": [\n//       \"Sofia Pomakidou\",\n//       \"George Mantzios\"\n//     ],\n//     \"website\": \"evo4hp.com\",\n//     \"founded\": \"2021\",\n//     \"sector\": \"SportsTech\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Athens GR\",\n//     \"description\": \"EVO Human Performance is a deep tech company revolutionizing the optimization of athlete performance through advanced data-driven health solutions. Founded in 2021 and headquartered in Athens, EVO introduces a transformative approach to athlete health management, leveraging sophisticated technology for personalized care.\"\n//   },\n//   {\n//     \"name\": \"Bli\",\n//     \"link\": \"https://uni.fund/project/bli/\",\n//     \"founders\": [\n//       \"Filippos Tourlomousis\"\n//     ],\n//     \"website\": \"biolattice.ai\",\n//     \"founded\": \"2021\",\n//     \"sector\": \"Biotechnology\",\n//     \"first_investment\": \"2023\",\n//     \"hq\": \"Boston, USA\",\n//     \"description\": \"BLI is a pioneering biomedical company at the forefront of deep tech innovation. The focus lies in the development of cutting-edge scaffolds for tissue regeneration, with plans to address various areas such as post-breast mastectomy tissue regeneration, diabetic foot care, and more.\"\n//   },\n//   {\n//     \"name\": \"Datawise\",\n//     \"link\": \"https://uni.fund/project/datawise/\",\n//     \"founders\": [\n//       \"Spyros Tzovairis\",\n//       \"Athanassios Panagoulas\"\n//     ],\n//     \"website\": \"dtwise.com\",\n//     \"founded\": \"2015\",\n//     \"sector\": \"Data Analytics\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Athens GR\",\n//     \"description\": \"DTWISE offers state-of-the-art data-driven energy efficiency & management solutions to Enterprises, Utilities, Liquid Fuels Suppliers and RES around the world, through its proven hardware agnostic IoT platform with endless analytical capabilities. DTWISE launched a new vertical of the same platform (EVWISE) to offer EV chargers management for CPO’s and drivers.\"\n//   },\n//   {\n//     \"name\": \"Cyrus\",\n//     \"link\": \"https://uni.fund/project/cyrus/\",\n//     \"founders\": [\n//       \"Athanasios Stoubos\",\n//       \"Manos Stamatakis\",\n//       \"Manos Zoulias\",\n//       \"Christodoulos Christodoulou\",\n//       \"George Karagiorgis\"\n//     ],\n//     \"website\": \"www.h2cyrus.eu\",\n//     \"founded\": \"2019\",\n//     \"sector\": \"ClimateTech\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Athens GR\",\n//     \"description\": \"Spin-off of the National Centre of Scientific Research “”Demokritos“ (NCSR Demokritos) which develops and manufactures a new series of Metal Hydride Hydrogen Compressors with unique advantages.\"\n//   },\n//   {\n//     \"name\": \"Enzyquest\",\n//     \"link\": \"https://uni.fund/project/enzyquest/\",\n//     \"founders\": [\n//       \"Dimitris Koutsioulis\"\n//     ],\n//     \"website\": \"www.enzyquest.com\",\n//     \"founded\": \"2019\",\n//     \"sector\": \"Biotechnology\",\n//     \"first_investment\": null,\n//     \"hq\": \"Heraklion, GR\",\n//     \"description\": \"Commercialization and development of high-quality enzymes and reagents for molecular biology applications. EnzyQuest’s team consists of researchers of Minotech Biotechnology, the in-house biotechnology production facility of IMBB-FORTH.\"\n//   },\n//   {\n//     \"name\": \"E Satisfaction\",\n//     \"link\": \"https://uni.fund/project/e-satisfaction/\",\n//     \"founders\": [\n//       \"Evangelos Kotsonis\"\n//     ],\n//     \"website\": \"www.e-satisfaction.com\",\n//     \"founded\": \"2014\",\n//     \"sector\": \"Data Analytics\",\n//     \"first_investment\": \"2020\",\n//     \"hq\": \"Athens, GR\",\n//     \"description\": \"Customer feedback platform that converts feedback to better operations and more sales. e-satisfaction provides a ready-to-use solution that covers all aspects of customer engagement, by combining customer feedback collection, personalization and marketing action:\"\n//   },\n//   {\n//     \"name\": \"Exitbee\",\n//     \"link\": \"https://uni.fund/project/exitbee/\",\n//     \"founders\": [\n//       \"Pavlos Linos\"\n//     ],\n//     \"website\": \"www.exitbee.com\",\n//     \"founded\": \"2015\",\n//     \"sector\": \"MediaTech\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"London, UK\",\n//     \"description\": \"User behaviour tracking and exit marketing platform, targeting potential customers and offering value to brands, advertisers, ad and media agencies, and publishers.\"\n//   },\n//   {\n//     \"name\": \"Flex Car\",\n//     \"link\": \"https://uni.fund/project/flex-car/\",\n//     \"founders\": [\n//       \"George Desyllas\"\n//     ],\n//     \"website\": \"www.flexcar.gr\",\n//     \"founded\": \"2018\",\n//     \"sector\": \"Mobility\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Athens, GR\",\n//     \"description\": \"FlexCar is a Mobility as a Service startup, which partners with dealerships to provide maximum flexibility for car usage/ownership through its online platform.\"\n//   },\n//   {\n//     \"name\": \"Food Oxys\",\n//     \"link\": \"https://uni.fund/project/food-oxys/\",\n//     \"founders\": [\n//       \"Fotis Tekos\",\n//       \"Dimitris Kouretas\"\n//     ],\n//     \"website\": \"www.foodoxys.com\",\n//     \"founded\": \"2019\",\n//     \"sector\": \"Biotechnology\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Larissa, GR\",\n//     \"description\": \"Spin-off of the University of Thessaly, which creates and appropriates value from the global trend of self-directed care by focusing on food as a means of wellness to prevent disease, improve health and enhance quality of life.\"\n//   },\n//   {\n//     \"name\": \"Intale\",\n//     \"link\": \"https://uni.fund/project/intale/\",\n//     \"founders\": [\n//       \"Orestis Tzanetis\",\n//       \"Grigoris Gousis\"\n//     ],\n//     \"website\": \"www.intale.com\",\n//     \"founded\": \"2010\",\n//     \"sector\": \"Business Related Software\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Delaware, USA / Athens, GR\",\n//     \"description\": \"Intale connects and streamlines the retail industry through a business intelligence and communication platform.\"\n//   },\n//   {\n//     \"name\": \"Kinvent\",\n//     \"link\": \"https://uni.fund/project/kinvent/\",\n//     \"founders\": [\n//       \"Odysseas Spanoudakis\",\n//       \"Athanasios Kollias\"\n//     ],\n//     \"website\": \"kinvent.com\",\n//     \"founded\": \"2017\",\n//     \"sector\": \"HealthTech\",\n//     \"first_investment\": \"2018\",\n//     \"hq\": \"Montpellier, FR\",\n//     \"description\": \"Leader in functional rehabilitation. Integrated System of connected devices accessible through a single app that tracks force, balance and human movement and simplifies evidence-based reporting.\"\n//   },\n//   {\n//     \"name\": \"M Hospitality\",\n//     \"link\": \"https://uni.fund/project/m-hospitality/\",\n//     \"founders\": [\n//       \"Triantafyllos Sarafidis\"\n//     ],\n//     \"website\": \"www.m-hospitality.com\",\n//     \"founded\": \"2014\",\n//     \"sector\": \"Business Related Software\",\n//     \"first_investment\": \"2018\",\n//     \"hq\": \"Athens GR\",\n//     \"description\": \"Hotel guest engagement platform, which turns data from multiple sources into actionable real-time insights and meaningful personalized actions, thus driving upwards hotel revenues & guest satisfaction.\"\n//   },\n//   {\n//     \"name\": \"Nanoplasma\",\n//     \"link\": \"https://uni.fund/project/nanoplasma/\",\n//     \"founders\": [\n//       \"Κosmas Ellinas\",\n//       \"Εvangelos Gogolides\",\n//       \"Αngeliki Tserepi\",\n//       \"Katerina Tsougeni\"\n//     ],\n//     \"website\": \"nanoplasmas.com\",\n//     \"founded\": \"2016\",\n//     \"sector\": \"HealthTech\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Athens, GR\",\n//     \"description\": \"Spin-off company of NCSR Demokritos, with expertise in micro-nanotechnology and surface engineering, preparing high-end consumables for health, food safety, agricultural and environmental applications.\"\n//   },\n//   {\n//     \"name\": \"Nimbata\",\n//     \"link\": \"https://uni.fund/project/nimbata/\",\n//     \"founders\": [\n//       \"Spyros Photopoulos\",\n//       \"Demitrios Pournarakis\"\n//     ],\n//     \"website\": \"nimbata.com\",\n//     \"founded\": \"2012\",\n//     \"sector\": \"Business Related Software\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Athens, GR\",\n//     \"description\": \"Nimbata is a cloud-based call tracking solution that allows marketing teams to track call conversions and tie these to online or offline marketing campaigns, to better understand which campaigns are driving calls to their business.\"\n//   },\n//   {\n//     \"name\": \"Novoville\",\n//     \"link\": \"https://uni.fund/project/novoville/\",\n//     \"founders\": [\n//       \"Iraklis Bourantas\",\n//       \"Fotis Talantzis\"\n//     ],\n//     \"website\": \"www.novoville.com\",\n//     \"founded\": \"2016\",\n//     \"sector\": \"Business Related Software\",\n//     \"first_investment\": \"2018\",\n//     \"hq\": \"London, UK\",\n//     \"description\": \"Citizen engagement and Person-2-Government (P2G) mobile payment platform for local authorities.\"\n//   },\n//   {\n//     \"name\": \"Plin\",\n//     \"link\": \"https://uni.fund/project/plin/\",\n//     \"founders\": [\n//       \"Alexander Tsouknidas\",\n//       \"Afroditi Vlachou\"\n//     ],\n//     \"website\": \"plin-nanotechnology.com\",\n//     \"founded\": \"2015\",\n//     \"sector\": \"Specialty chemicals\",\n//     \"first_investment\": \"2018\",\n//     \"hq\": \"Thessaloniki, GR\",\n//     \"description\": \"Spin-off from the Aristotle University of Thessaloniki (AUTH) focusing on nanomaterials production and nanotechnology-enhanced, next generation grooming products for companion animals (NanoSanitasTM).\"\n//   },\n//   {\n//     \"name\": \"Qcell\",\n//     \"link\": \"https://uni.fund/project/qcell/\",\n//     \"founders\": [\n//       \"Costas Balas\"\n//     ],\n//     \"website\": \"qcell.tech\",\n//     \"founded\": \"2016\",\n//     \"sector\": \"Life Sciences & Healthcare\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Chania, GR\",\n//     \"description\": \"Q-Cell is a disruptive platform image technology. First ever hyper spectral spectroscopy camera in real time video speeds (Dermoscope, Hysteroscope, Surgical Hysteroscope).\"\n//   },\n//   {\n//     \"name\": \"Tekmon\",\n//     \"link\": \"https://uni.fund/project/tekmon/\",\n//     \"founders\": [\n//       \"Nicholas Zinas\",\n//       \"Panos Mitsios\",\n//       \"Nikolaos Vrettos\"\n//     ],\n//     \"website\": \"Tekmon.gr\",\n//     \"founded\": \"2015\",\n//     \"sector\": \"Business Related Software\",\n//     \"first_investment\": \"2018\",\n//     \"hq\": \"Ioannina, GR\",\n//     \"description\": \"No-code workflow optimization platform that helps digitize processes and boosts the productivity of deskless teams.\"\n//   },\n//   {\n//     \"name\": \"Boolsterup\",\n//     \"link\": \"https://uni.fund/project/boolsterup/\",\n//     \"founders\": [\n//       \"Joanna Krashia\",\n//       \"Sotiris Pittas\",\n//       \"Alejandro Fernandez Artidiello\"\n//     ],\n//     \"website\": \"bolsterup.co\",\n//     \"founded\": \"2023\",\n//     \"sector\": \"Construction\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Nicosia CY\",\n//     \"description\": \"Bolsterup is the first digital ecosystem uniting all construction industry players under one platform. It provides a comprehensive digital blueprint of completed and upcoming projects, featuring contributors, their capabilities, products, and services. Users can create professional digital portfolios, enhance their market presence, and discover new opportunities through an interconnected network of industry professionals.\"\n//   },\n//   {\n//     \"name\": \"Crewfiction\",\n//     \"link\": \"https://uni.fund/project/crewfiction/\",\n//     \"founders\": [\n//       \"Savvas Zortikis\",\n//       \"Thomas Papaspyros\"\n//     ],\n//     \"website\": \"crewfiction.com\",\n//     \"founded\": \"2022\",\n//     \"sector\": \"Media & Content Publishing\",\n//     \"first_investment\": \"2023\",\n//     \"hq\": \"Los Angeles, USA\",\n//     \"description\": \"Crewfiction is leading a transformative movement in the book publishing industry by establishing a platform where writers and readers collaborate to create and market the next generation of bestsellers.\"\n//   },\n//   {\n//     \"name\": \"Frisbo\",\n//     \"link\": \"https://uni.fund/project/frisbo/\",\n//     \"founders\": [\n//       \"Bogdan Colceriu\"\n//     ],\n//     \"website\": \"frisbo.eu\",\n//     \"founded\": \"2019\",\n//     \"sector\": \"e-commerce\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Brasov, RO\",\n//     \"description\": \"Frisbo is an e-fulfillment platform that seamlessly connects e-commerce businesses with an extensive network of fulfillment centers across Europe. Frisbo leverages advanced logistics technology to optimize inventory management, order processing, and delivery. By integrating with various e-commerce platforms, Frisbo enables businesses to scale effortlessly, ensuring fast and reliable shipping to their customers.\"\n//   },\n//   {\n//     \"name\": \"Indeex\",\n//     \"link\": \"https://uni.fund/project/indeex/\",\n//     \"founders\": [\n//       \"Konstantinos Akrivos\",\n//       \"Dimitris Garagounis\"\n//     ],\n//     \"website\": \"www.indeex.ai\",\n//     \"founded\": \"2020\",\n//     \"sector\": \"IoT\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Vólos GR\",\n//     \"description\": \"Indeex is a pioneering tech company transforming the Food and Beverage industry by integrating IoT and AI capabilities into existing industrial equipment. Founded in 2021 and based in Athens, Indeex provides a digital twin platform that enhances productivity, reduces costs, and automates daily operations.\"\n//   },\n//   {\n//     \"name\": \"Lastmily\",\n//     \"link\": \"https://uni.fund/project/lastmily/\",\n//     \"founders\": [\n//       \"Theo Theodoridis\",\n//       \"Dimitrios Stratakis\"\n//     ],\n//     \"website\": \"lastmily.com\",\n//     \"founded\": \"2021\",\n//     \"sector\": \"Information Technology\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Thessaloniki, GR\",\n//     \"description\": \"Lastmily is a SaaS provider revolutionizing the logistics landscape for e-commerce and delivery businesses. The company’s comprehensive platform addresses critical industry challenges such as inefficiency, high operational costs, and limited managerial control.\"\n//   },\n//   {\n//     \"name\": \"Moving Doors\",\n//     \"link\": \"https://uni.fund/project/moving-doors/\",\n//     \"founders\": [\n//       \"Demetris Papadopoulos\",\n//       \"Yiannis Christodoulou\",\n//       \"Kyrillos Sehata\",\n//       \"Giorgos Hadjivarnava\"\n//     ],\n//     \"website\": \"movingdoors.com\",\n//     \"founded\": \"2022\",\n//     \"sector\": \"PropTech\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Limassol CY\",\n//     \"description\": \"Moving Doors offers a modern accommodation solution tailored to meet the needs of business professionals and digital nomads. Started in Cyprus in 2023, this technology-driven company provides an array of fully serviced, flexible, and beautifully furnished apartments designed to facilitate a seamless living experience.\"\n//   },\n//   {\n//     \"name\": \"Morphoses\",\n//     \"link\": \"https://uni.fund/project/morphoses/\",\n//     \"founders\": [\n//       \"Alexandros Pithamitsis\",\n//       \"Anna Natsvlishvili\",\n//       \"Vasiliki Tzortzopoulou\"\n//     ],\n//     \"website\": \"morphoses.io\",\n//     \"founded\": \"2021\",\n//     \"sector\": \"EdTech\",\n//     \"first_investment\": \"2023\",\n//     \"hq\": \"London, UK\",\n//     \"description\": \"Morphoses is a platform for soft skills, designed with a training-as-a-service model in mind. The platform features a variety of modules and courses, currently tailored exclusively for K12 students. The primary business strategy revolves around B2B sales, targeting large corporations. These corporations, in turn, provide their employees’ families with access to our platform, positioning it as a valuable benefit for working parents.\"\n//   },\n//   {\n//     \"name\": \"Moveo Ai\",\n//     \"link\": \"https://uni.fund/project/moveo-ai/\",\n//     \"founders\": [\n//       \"Panos Karagiannis\",\n//       \"George Karagiannis\",\n//       \"Thanos Papadimitriou\"\n//     ],\n//     \"website\": \"moveo.ai\",\n//     \"founded\": \"2020\",\n//     \"sector\": \"Enterprise AI\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"New Milford, USA\",\n//     \"description\": \"MOVEO.AI is dedicated to revolutionizing customer interactions through advanced conversational GenAI solutions. Founded in 2021, MOVEO.AI develops intelligent virtual assistants that enhance customer service, streamline operations, and improve user engagement. By leveraging state-of-the-art natural language processing and machine learning algorithms, MOVEO.AI’s platform provides seamless, human-like interactions across various channels, including web, mobile, and social media.\"\n//   },\n//   {\n//     \"name\": \"Output\",\n//     \"link\": \"https://uni.fund/project/output/\",\n//     \"founders\": [\n//       \"Martin O’Reilly\",\n//       \"Darragh Whelan\",\n//       \"Julian Eberle\"\n//     ],\n//     \"website\": \"outputsports.com\",\n//     \"founded\": \"2018\",\n//     \"sector\": \"SportsTech\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Dublin IE\",\n//     \"description\": \"Output Sports is enhancing athlete performance through comprehensive data analytics. The platform provides detailed performance insights by utilizing wearable technology that tracks various metrics such as speed, agility, strength, and endurance.\"\n//   },\n//   {\n//     \"name\": \"Piney\",\n//     \"link\": \"https://uni.fund/project/piney/\",\n//     \"founders\": [\n//       \"Nicolas Chrysostomou\"\n//     ],\n//     \"website\": \"piney.eu\",\n//     \"founded\": \"2024\",\n//     \"sector\": \"PropTech\",\n//     \"first_investment\": \"2024\",\n//     \"hq\": \"Nicosia CY\",\n//     \"description\": \"Piney is optimizing operations for property managers of short-term and mid-term rentals, simplifying tasks such as cleaning, laundry, quality control, and scheduling through scalable technology. The platform’s advanced algorithms handle complex logistics and real-time quality assurance, ensuring efficient operations, high-quality service, and seamless scalability, thus enabling property managers to expand without operational bottlenecks.\"\n//   },\n//   {\n//     \"name\": \"Allcancode\",\n//     \"link\": \"https://uni.fund/project/allcancode/\",\n//     \"founders\": [\n//       \"Kostas Karolemeas\",\n//       \"Spyros Alvertis\"\n//     ],\n//     \"website\": \"www.allcancode.com\",\n//     \"founded\": \"2014\",\n//     \"sector\": \"Business Related Software\",\n//     \"first_investment\": \"2019\",\n//     \"hq\": \"Delaware, USA\",\n//     \"description\": \"World’s first end-to-end less-code platform, which accelerates custom web and mobile software development by simplifying or automating the steps of the process from the front-end designs to the final delivery.\"\n//   }\n// ]\n\nconst allCompanies = [\n  {\n    \"name\": \"B2Bwave\",\n    \"link\": \"https://uni.fund/project/b2bwave/\",\n    \"founders\": [\n      \"Alex Seimanidis\",\n      \"Kyriakos Liakopoulos\"\n    ],\n    \"website\": \"b2bwave.com\",\n    \"founded\": \"2016\",\n    \"sector\": \"Business Related Software\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"London UK\",\n    \"description\": \"B2B e-commerce solution (SaaS) for wholesale distributors & manufacturers looking to automate their daily workflow online.B2B Wave is an all-in-one, easy, and personalized B2B e-commerce solution for wholesale distributors and manufacturers, which helps them easily set up their private B2B e-commerce portal, display their product catalogue, accept orders online, communicate with their customers, reduce their expenses and boost their sales.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Bespot\",\n    \"link\": \"https://uni.fund/project/bespot/\",\n    \"founders\": [\n      \"Leon Gavalas\",\n      \"Vasilis Stavrou\",\n      \"Konstantinos Dimitros\",\n      \"Anastasia Griva\"\n    ],\n    \"website\": \"bespot.com\",\n    \"founded\": \"2018\",\n    \"sector\": \"Data Analytics\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Athens GR\",\n    \"description\": \"Bespot offers Location Fraud Detection and Insights for indoor and outdoor environments, using Analytics, Artificial Intelligence and IoT.Value-add1. In-Store Presence Verification & Analytics, utilizing Machine Learning on various signals (wifi/BLE) and achieving high accuracy in-store position identification accepted by the Regulator, in addition to extracting useful insights.2. Outdoor User Tracking, utilizing background location services, manual check-ins and location activated in-store services to collect visit details of a panel of consumers.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Bibecoffee\",\n    \"link\": \"https://uni.fund/project/bibecoffee/\",\n    \"founders\": [\n      \"Vasilis Apostolopoulos\",\n      \"Panos Vrettos\"\n    ],\n    \"website\": \"bibecoffee.com\",\n    \"founded\": \"2018\",\n    \"sector\": \"AI/IoT/Data\",\n    \"first_investment\": \"2020\",\n    \"hq\": \"London, UK\",\n    \"description\": \"IoT real time monitoring solution for professional coffee machines that minimizes revenue loss, ensures maintenance efficiency and safeguards brand quality image.Through Bibe Apps, coffee distributors, coffee chains and coffee shop owners are now able to monitor their connected coffee machines’ usage and get an overview of coffee consumption data at a glance, even on-the-go.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Clio Muse\",\n    \"link\": \"https://uni.fund/project/clio-muse/\",\n    \"founders\": [\n      \"Yiannis Nikolopoulos\",\n      \"Daphne Tsevreni\",\n      \"Andreas Fatouros\"\n    ],\n    \"website\": \"cliomusetours.com\",\n    \"founded\": \"2014\",\n    \"sector\": \"TravelTech\",\n    \"first_investment\": \"2018\",\n    \"hq\": \"Athens GR\",\n    \"description\": \"Award-winning tour-guide platform that offers self-guided audio tours and virtual tour experiences for museums, temporary exhibitions and city walks in 15 countries.The company has invented a scalable way to produce high quality audio & virtual tours that help tour operators and Online Travel Agencies (OTAs) increase their upselling success rate. Through Clio Muse Tours platform, tourism & culture professionals create self-guided digital tours for top attractions & city walks.\",\n    \"gemi_number\": \"131959349000\"\n  },\n  {\n    \"name\": \"Collegelink\",\n    \"link\": \"https://uni.fund/project/collegelink/\",\n    \"founders\": [\n      \"Yannis Imelos\",\n      \"Stefanos Alkidis\"\n    ],\n    \"website\": \"linq.co\",\n    \"founded\": \"2016\",\n    \"sector\": \"HRTech\",\n    \"first_investment\": \"2018\",\n    \"hq\": \"Athens, GR\",\n    \"description\": \"A 360° Career Marketplace, helping candidates advance their career and companies hire great talent.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Convert Group\",\n    \"link\": \"https://uni.fund/project/convert-group/\",\n    \"founders\": [\n      \"Panayotis Gezerlis\",\n      \"Elena Chailazopoulou\"\n    ],\n    \"website\": \"www.convertgroup.com\",\n    \"founded\": \"2014\",\n    \"sector\": \"Data Analytics\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Athens GR\",\n    \"description\": \"Leader in the Data & Analytics Market Intelligence frontier in the lucrative eCommerce sectors of online pharmacy, online grocery & online beauty.With the increasing importance of the online sales channel many brands, especially those belonging to multinational fast-moving-consumer-goods (FMCG) companies, faced an increasing need to get visibility for sales and market shares online, as it currently happens for the offline sales channels.\",\n    \"gemi_number\": \"129501403000\"\n  },\n  {\n    \"name\": \"Edencore\",\n    \"link\": \"https://uni.fund/project/edencore/\",\n    \"founders\": [\n      \"Nikos Mylonas\",\n      \"Spyros Fountas\"\n    ],\n    \"website\": \"edenlibrary.ai\",\n    \"founded\": \"2021\",\n    \"sector\": \"Agritech\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Athens GR\",\n    \"description\": \"Edencore is a pioneering Agri-tech company specializing in integrated software and hardware solutions aimed at enhancing precision farming practices for specialty crops, specifically fruits and vegetables. Leveraging cutting-edge technology, Edencore introduces a transformative approach to crop management and resource optimization.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Evo\",\n    \"link\": \"https://uni.fund/project/evo/\",\n    \"founders\": [\n      \"Sofia Pomakidou\",\n      \"George Mantzios\"\n    ],\n    \"website\": \"evo4hp.com\",\n    \"founded\": \"2021\",\n    \"sector\": \"SportsTech\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Athens GR\",\n    \"description\": \"EVO Human Performance is a deep tech company revolutionizing the optimization of athlete performance through advanced data-driven health solutions. Founded in 2021 and headquartered in Athens, EVO introduces a transformative approach to athlete health management, leveraging sophisticated technology for personalized care.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Bli\",\n    \"link\": \"https://uni.fund/project/bli/\",\n    \"founders\": [\n      \"Filippos Tourlomousis\"\n    ],\n    \"website\": \"biolattice.ai\",\n    \"founded\": \"2021\",\n    \"sector\": \"Biotechnology\",\n    \"first_investment\": \"2023\",\n    \"hq\": \"Boston, USA\",\n    \"description\": \"BLI is a pioneering biomedical company at the forefront of deep tech innovation. The focus lies in the development of cutting-edge scaffolds for tissue regeneration, with plans to address various areas such as post-breast mastectomy tissue regeneration, diabetic foot care, and more.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Datawise\",\n    \"link\": \"https://uni.fund/project/datawise/\",\n    \"founders\": [\n      \"Spyros Tzovairis\",\n      \"Athanassios Panagoulas\"\n    ],\n    \"website\": \"dtwise.com\",\n    \"founded\": \"2015\",\n    \"sector\": \"Data Analytics\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Athens GR\",\n    \"description\": \"DTWISE offers state-of-the-art data-driven energy efficiency & management solutions to Enterprises, Utilities, Liquid Fuels Suppliers and RES around the world, through its proven hardware agnostic IoT platform with endless analytical capabilities. DTWISE launched a new vertical of the same platform (EVWISE) to offer EV chargers management for CPO’s and drivers.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Cyrus\",\n    \"link\": \"https://uni.fund/project/cyrus/\",\n    \"founders\": [\n      \"Athanasios Stoubos\",\n      \"Manos Stamatakis\",\n      \"Manos Zoulias\",\n      \"Christodoulos Christodoulou\",\n      \"George Karagiorgis\"\n    ],\n    \"website\": \"www.h2cyrus.eu\",\n    \"founded\": \"2019\",\n    \"sector\": \"ClimateTech\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Athens GR\",\n    \"description\": \"Spin-off of the National Centre of Scientific Research “”Demokritos“ (NCSR Demokritos) which develops and manufactures a new series of Metal Hydride Hydrogen Compressors with unique advantages.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Enzyquest\",\n    \"link\": \"https://uni.fund/project/enzyquest/\",\n    \"founders\": [\n      \"Dimitris Koutsioulis\"\n    ],\n    \"website\": \"www.enzyquest.com\",\n    \"founded\": \"2019\",\n    \"sector\": \"Biotechnology\",\n    \"first_investment\": null,\n    \"hq\": \"Heraklion, GR\",\n    \"description\": \"Commercialization and development of high-quality enzymes and reagents for molecular biology applications. EnzyQuest’s team consists of researchers of Minotech Biotechnology, the in-house biotechnology production facility of IMBB-FORTH.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"E Satisfaction\",\n    \"link\": \"https://uni.fund/project/e-satisfaction/\",\n    \"founders\": [\n      \"Evangelos Kotsonis\"\n    ],\n    \"website\": \"www.e-satisfaction.com\",\n    \"founded\": \"2014\",\n    \"sector\": \"Data Analytics\",\n    \"first_investment\": \"2020\",\n    \"hq\": \"Athens, GR\",\n    \"description\": \"Customer feedback platform that converts feedback to better operations and more sales. e-satisfaction provides a ready-to-use solution that covers all aspects of customer engagement, by combining customer feedback collection, personalization and marketing action:\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Exitbee\",\n    \"link\": \"https://uni.fund/project/exitbee/\",\n    \"founders\": [\n      \"Pavlos Linos\"\n    ],\n    \"website\": \"www.exitbee.com\",\n    \"founded\": \"2015\",\n    \"sector\": \"MediaTech\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"London, UK\",\n    \"description\": \"User behaviour tracking and exit marketing platform, targeting potential customers and offering value to brands, advertisers, ad and media agencies, and publishers.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Flex Car\",\n    \"link\": \"https://uni.fund/project/flex-car/\",\n    \"founders\": [\n      \"George Desyllas\"\n    ],\n    \"website\": \"www.flexcar.gr\",\n    \"founded\": \"2018\",\n    \"sector\": \"Mobility\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Athens, GR\",\n    \"description\": \"FlexCar is a Mobility as a Service startup, which partners with dealerships to provide maximum flexibility for car usage/ownership through its online platform.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Food Oxys\",\n    \"link\": \"https://uni.fund/project/food-oxys/\",\n    \"founders\": [\n      \"Fotis Tekos\",\n      \"Dimitris Kouretas\"\n    ],\n    \"website\": \"www.foodoxys.com\",\n    \"founded\": \"2019\",\n    \"sector\": \"Biotechnology\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Larissa, GR\",\n    \"description\": \"Spin-off of the University of Thessaly, which creates and appropriates value from the global trend of self-directed care by focusing on food as a means of wellness to prevent disease, improve health and enhance quality of life.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Intale\",\n    \"link\": \"https://uni.fund/project/intale/\",\n    \"founders\": [\n      \"Orestis Tzanetis\",\n      \"Grigoris Gousis\"\n    ],\n    \"website\": \"www.intale.com\",\n    \"founded\": \"2010\",\n    \"sector\": \"Business Related Software\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Delaware, USA / Athens, GR\",\n    \"description\": \"Intale connects and streamlines the retail industry through a business intelligence and communication platform.\",\n    \"gemi_number\": \"9318501000\"\n  },\n  {\n    \"name\": \"Kinvent\",\n    \"link\": \"https://uni.fund/project/kinvent/\",\n    \"founders\": [\n      \"Odysseas Spanoudakis\",\n      \"Athanasios Kollias\"\n    ],\n    \"website\": \"kinvent.com\",\n    \"founded\": \"2017\",\n    \"sector\": \"HealthTech\",\n    \"first_investment\": \"2018\",\n    \"hq\": \"Montpellier, FR\",\n    \"description\": \"Leader in functional rehabilitation. Integrated System of connected devices accessible through a single app that tracks force, balance and human movement and simplifies evidence-based reporting.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"M Hospitality\",\n    \"link\": \"https://uni.fund/project/m-hospitality/\",\n    \"founders\": [\n      \"Triantafyllos Sarafidis\"\n    ],\n    \"website\": \"www.m-hospitality.com\",\n    \"founded\": \"2014\",\n    \"sector\": \"Business Related Software\",\n    \"first_investment\": \"2018\",\n    \"hq\": \"Athens GR\",\n    \"description\": \"Hotel guest engagement platform, which turns data from multiple sources into actionable real-time insights and meaningful personalized actions, thus driving upwards hotel revenues & guest satisfaction.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Nanoplasma\",\n    \"link\": \"https://uni.fund/project/nanoplasma/\",\n    \"founders\": [\n      \"Κosmas Ellinas\",\n      \"Εvangelos Gogolides\",\n      \"Αngeliki Tserepi\",\n      \"Katerina Tsougeni\"\n    ],\n    \"website\": \"nanoplasmas.com\",\n    \"founded\": \"2016\",\n    \"sector\": \"HealthTech\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Athens, GR\",\n    \"description\": \"Spin-off company of NCSR Demokritos, with expertise in micro-nanotechnology and surface engineering, preparing high-end consumables for health, food safety, agricultural and environmental applications.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Nimbata\",\n    \"link\": \"https://uni.fund/project/nimbata/\",\n    \"founders\": [\n      \"Spyros Photopoulos\",\n      \"Demitrios Pournarakis\"\n    ],\n    \"website\": \"nimbata.com\",\n    \"founded\": \"2012\",\n    \"sector\": \"Business Related Software\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Athens, GR\",\n    \"description\": \"Nimbata is a cloud-based call tracking solution that allows marketing teams to track call conversions and tie these to online or offline marketing campaigns, to better understand which campaigns are driving calls to their business.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Novoville\",\n    \"link\": \"https://uni.fund/project/novoville/\",\n    \"founders\": [\n      \"Iraklis Bourantas\",\n      \"Fotis Talantzis\"\n    ],\n    \"website\": \"www.novoville.com\",\n    \"founded\": \"2016\",\n    \"sector\": \"Business Related Software\",\n    \"first_investment\": \"2018\",\n    \"hq\": \"London, UK\",\n    \"description\": \"Citizen engagement and Person-2-Government (P2G) mobile payment platform for local authorities.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Plin\",\n    \"link\": \"https://uni.fund/project/plin/\",\n    \"founders\": [\n      \"Alexander Tsouknidas\",\n      \"Afroditi Vlachou\"\n    ],\n    \"website\": \"plin-nanotechnology.com\",\n    \"founded\": \"2015\",\n    \"sector\": \"Specialty chemicals\",\n    \"first_investment\": \"2018\",\n    \"hq\": \"Thessaloniki, GR\",\n    \"description\": \"Spin-off from the Aristotle University of Thessaloniki (AUTH) focusing on nanomaterials production and nanotechnology-enhanced, next generation grooming products for companion animals (NanoSanitasTM).\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Qcell\",\n    \"link\": \"https://uni.fund/project/qcell/\",\n    \"founders\": [\n      \"Costas Balas\"\n    ],\n    \"website\": \"qcell.tech\",\n    \"founded\": \"2016\",\n    \"sector\": \"Life Sciences & Healthcare\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Chania, GR\",\n    \"description\": \"Q-Cell is a disruptive platform image technology. First ever hyper spectral spectroscopy camera in real time video speeds (Dermoscope, Hysteroscope, Surgical Hysteroscope).\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Tekmon\",\n    \"link\": \"https://uni.fund/project/tekmon/\",\n    \"founders\": [\n      \"Nicholas Zinas\",\n      \"Panos Mitsios\",\n      \"Nikolaos Vrettos\"\n    ],\n    \"website\": \"Tekmon.gr\",\n    \"founded\": \"2015\",\n    \"sector\": \"Business Related Software\",\n    \"first_investment\": \"2018\",\n    \"hq\": \"Ioannina, GR\",\n    \"description\": \"No-code workflow optimization platform that helps digitize processes and boosts the productivity of deskless teams.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Boolsterup\",\n    \"link\": \"https://uni.fund/project/boolsterup/\",\n    \"founders\": [\n      \"Joanna Krashia\",\n      \"Sotiris Pittas\",\n      \"Alejandro Fernandez Artidiello\"\n    ],\n    \"website\": \"bolsterup.co\",\n    \"founded\": \"2023\",\n    \"sector\": \"Construction\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Nicosia CY\",\n    \"description\": \"Bolsterup is the first digital ecosystem uniting all construction industry players under one platform. It provides a comprehensive digital blueprint of completed and upcoming projects, featuring contributors, their capabilities, products, and services. Users can create professional digital portfolios, enhance their market presence, and discover new opportunities through an interconnected network of industry professionals.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Crewfiction\",\n    \"link\": \"https://uni.fund/project/crewfiction/\",\n    \"founders\": [\n      \"Savvas Zortikis\",\n      \"Thomas Papaspyros\"\n    ],\n    \"website\": \"crewfiction.com\",\n    \"founded\": \"2022\",\n    \"sector\": \"Media & Content Publishing\",\n    \"first_investment\": \"2023\",\n    \"hq\": \"Los Angeles, USA\",\n    \"description\": \"Crewfiction is leading a transformative movement in the book publishing industry by establishing a platform where writers and readers collaborate to create and market the next generation of bestsellers.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Frisbo\",\n    \"link\": \"https://uni.fund/project/frisbo/\",\n    \"founders\": [\n      \"Bogdan Colceriu\"\n    ],\n    \"website\": \"frisbo.eu\",\n    \"founded\": \"2019\",\n    \"sector\": \"e-commerce\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Brasov, RO\",\n    \"description\": \"Frisbo is an e-fulfillment platform that seamlessly connects e-commerce businesses with an extensive network of fulfillment centers across Europe. Frisbo leverages advanced logistics technology to optimize inventory management, order processing, and delivery. By integrating with various e-commerce platforms, Frisbo enables businesses to scale effortlessly, ensuring fast and reliable shipping to their customers.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Indeex\",\n    \"link\": \"https://uni.fund/project/indeex/\",\n    \"founders\": [\n      \"Konstantinos Akrivos\",\n      \"Dimitris Garagounis\"\n    ],\n    \"website\": \"www.indeex.ai\",\n    \"founded\": \"2020\",\n    \"sector\": \"IoT\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Vólos GR\",\n    \"description\": \"Indeex is a pioneering tech company transforming the Food and Beverage industry by integrating IoT and AI capabilities into existing industrial equipment. Founded in 2021 and based in Athens, Indeex provides a digital twin platform that enhances productivity, reduces costs, and automates daily operations.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Lastmily\",\n    \"link\": \"https://uni.fund/project/lastmily/\",\n    \"founders\": [\n      \"Theo Theodoridis\",\n      \"Dimitrios Stratakis\"\n    ],\n    \"website\": \"lastmily.com\",\n    \"founded\": \"2021\",\n    \"sector\": \"Information Technology\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Thessaloniki, GR\",\n    \"description\": \"Lastmily is a SaaS provider revolutionizing the logistics landscape for e-commerce and delivery businesses. The company’s comprehensive platform addresses critical industry challenges such as inefficiency, high operational costs, and limited managerial control.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Moving Doors\",\n    \"link\": \"https://uni.fund/project/moving-doors/\",\n    \"founders\": [\n      \"Demetris Papadopoulos\",\n      \"Yiannis Christodoulou\",\n      \"Kyrillos Sehata\",\n      \"Giorgos Hadjivarnava\"\n    ],\n    \"website\": \"movingdoors.com\",\n    \"founded\": \"2022\",\n    \"sector\": \"PropTech\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Limassol CY\",\n    \"description\": \"Moving Doors offers a modern accommodation solution tailored to meet the needs of business professionals and digital nomads. Started in Cyprus in 2023, this technology-driven company provides an array of fully serviced, flexible, and beautifully furnished apartments designed to facilitate a seamless living experience.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Morphoses\",\n    \"link\": \"https://uni.fund/project/morphoses/\",\n    \"founders\": [\n      \"Alexandros Pithamitsis\",\n      \"Anna Natsvlishvili\",\n      \"Vasiliki Tzortzopoulou\"\n    ],\n    \"website\": \"morphoses.io\",\n    \"founded\": \"2021\",\n    \"sector\": \"EdTech\",\n    \"first_investment\": \"2023\",\n    \"hq\": \"London, UK\",\n    \"description\": \"Morphoses is a platform for soft skills, designed with a training-as-a-service model in mind. The platform features a variety of modules and courses, currently tailored exclusively for K12 students. The primary business strategy revolves around B2B sales, targeting large corporations. These corporations, in turn, provide their employees’ families with access to our platform, positioning it as a valuable benefit for working parents.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Moveo Ai\",\n    \"link\": \"https://uni.fund/project/moveo-ai/\",\n    \"founders\": [\n      \"Panos Karagiannis\",\n      \"George Karagiannis\",\n      \"Thanos Papadimitriou\"\n    ],\n    \"website\": \"moveo.ai\",\n    \"founded\": \"2020\",\n    \"sector\": \"Enterprise AI\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"New Milford, USA\",\n    \"description\": \"MOVEO.AI is dedicated to revolutionizing customer interactions through advanced conversational GenAI solutions. Founded in 2021, MOVEO.AI develops intelligent virtual assistants that enhance customer service, streamline operations, and improve user engagement. By leveraging state-of-the-art natural language processing and machine learning algorithms, MOVEO.AI’s platform provides seamless, human-like interactions across various channels, including web, mobile, and social media.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Output\",\n    \"link\": \"https://uni.fund/project/output/\",\n    \"founders\": [\n      \"Martin O’Reilly\",\n      \"Darragh Whelan\",\n      \"Julian Eberle\"\n    ],\n    \"website\": \"outputsports.com\",\n    \"founded\": \"2018\",\n    \"sector\": \"SportsTech\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Dublin IE\",\n    \"description\": \"Output Sports is enhancing athlete performance through comprehensive data analytics. The platform provides detailed performance insights by utilizing wearable technology that tracks various metrics such as speed, agility, strength, and endurance.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Piney\",\n    \"link\": \"https://uni.fund/project/piney/\",\n    \"founders\": [\n      \"Nicolas Chrysostomou\"\n    ],\n    \"website\": \"piney.eu\",\n    \"founded\": \"2024\",\n    \"sector\": \"PropTech\",\n    \"first_investment\": \"2024\",\n    \"hq\": \"Nicosia CY\",\n    \"description\": \"Piney is optimizing operations for property managers of short-term and mid-term rentals, simplifying tasks such as cleaning, laundry, quality control, and scheduling through scalable technology. The platform’s advanced algorithms handle complex logistics and real-time quality assurance, ensuring efficient operations, high-quality service, and seamless scalability, thus enabling property managers to expand without operational bottlenecks.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Allcancode\",\n    \"link\": \"https://uni.fund/project/allcancode/\",\n    \"founders\": [\n      \"Kostas Karolemeas\",\n      \"Spyros Alvertis\"\n    ],\n    \"website\": \"www.allcancode.com\",\n    \"founded\": \"2014\",\n    \"sector\": \"Business Related Software\",\n    \"first_investment\": \"2019\",\n    \"hq\": \"Delaware, USA\",\n    \"description\": \"World’s first end-to-end less-code platform, which accelerates custom web and mobile software development by simplifying or automating the steps of the process from the front-end designs to the final delivery.\",\n    \"gemi_number\": null\n  },\n  {\n    \"name\": \"Voicemap\",\n    \"link\": \"https://voicemap.me/\",\n    \"founders\": [\n      \"Iain Manley\",\n      \"Tao Nhu Dinh\",\n      \"Gary Morris\",\n      \"Alicia Chamaille\"\n    ],\n    \"website\": \"https://voicemap.me/\",\n    \"founded\": \"2014\",\n    \"sector\": \"TravelTech\",\n    \"first_investment\": \"Unknown\",\n    \"hq\": \"Singapore\",\n    \"description\": \"VoiceMap (voicemap.me) is a platform that offers self-guided GPS audio tours for travelers. Users can download walking, cycling, driving, or even boat tours that play automatically based on their location, blending navigation with local storytelling. The tours can be used offline and cover hundreds of destinations worldwide, with content created by local narrators to give an authentic perspective.\",\n    \"gemi_number\": null\n  },\n  \n  {\n    \"name\": \"STQRY\",\n    \"link\": \"https://stqry.com/\",\n    \"founders\": [\n      \"Thomas Dunne\",\n      \"Glen Barnes\",\n      \"Kyle Pierce\",\n      \"Ilia Sidorenko\"\n    ],\n    \"website\": \"https://stqry.com/\",\n    \"founded\": \"2020\",\n    \"sector\": \"TravelTech\",\n    \"first_investment\": \"Unknown\",\n    \"hq\": \"Rochester, NY, USA\",\n    \"description\": \"STQRY (stqry.com) provides a digital platform for creating self-guided tours and interactive visitor experiences, primarily for museums, cultural sites, heritage trails, parks, and cities. Its tools include mobile apps, kiosks, digital labels, and a marketplace that allows institutions to distribute and monetize their content. The platform helps organizations digitize their narratives, engage visitors more deeply, and modernize the cultural experience.\",\n    \"gemi_number\": null\n  },\n\n  {\n    \"name\": \"WeGoTrip\",\n    \"link\": \"https://wegotrip.com/\",\n    \"founders\": [\n      \"Alexander Golovaty\",\n      \"Stanislav Petriakov\"\n    ],\n    \"website\": \"https://wegotrip.com/\",\n    \"founded\": \"2019\",\n    \"sector\": \"TravelTech\",\n    \"first_investment\": \"Unknown\",\n    \"hq\": \"New York, USA\",\n    \"description\": \"WeGoTrip (wegotrip.com) specializes in downloadable audio tours that turn a traveler’s smartphone into a personal guide. After purchase, tours can be downloaded, used offline, and played at the traveler’s own pace with full control over playback. The company offers a wide selection of tours across major destinations worldwide, helping travelers explore cities and landmarks independently while still accessing curated commentary.\",\n    \"gemi_number\": null\n  },\n\n  {\n    \"name\": \"iWander\",\n    \"link\": \"https://iwander.io/\",\n    \"founders\": [\n      \"Enrique Ybarra\"\n    ],\n    \"website\": \"https://iwander.io/\",\n    \"founded\": \"2023\",\n    \"sector\": \"TravelTech\",\n    \"first_investment\": \"Unknown\",\n    \"hq\": \"London, UK\",\n    \"description\": \"iWander (iwander.io) positions itself as an AI-powered travel companion and software development kit for travel companies. Its technology allows operators to integrate a branded AI chat or virtual guide into their apps, delivering real-time, contextual information to travelers. The platform includes a chat SDK, a tour guide SDK, and white-label applications, combining live data such as transit and traffic with personalized recommendations to enhance engagement and create upsell opportunities throughout a trip.\",\n    \"gemi_number\": null\n  }\n  \n];\n\nconst selected = $json[\"body\"][\"company\"].trim().toLowerCase();\n\nconst match = allCompanies.find(c =>\n  c.name.trim().toLowerCase() === selected\n);\n\nif (!match) {\n  return {\n    json: { error: \"Company not found\", selected }\n  };\n}\n\nmatch.firstName = $json.body.firstName;\nmatch.email = $json.body.email;\n\nreturn {\n  json: match\n};\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -2016,
+        560
+      ],
+      "id": "bc683f3b-6988-4a69-b544-105a083fb220",
+      "name": "Code"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Extract and format the key company facts, mission, product, and founders from the JSON input about {{ $('Code').item.json.name }}. Be concise, clear, and informative. Present the company as if you're briefing a VC analyst for the first time.",
+        "options": {
+          "systemMessage": "=You are the Company Context Builder Agent for a Venture Capital.\n\nYour job is to extract and format all the key facts about this startup for downstream agents.\n\nHere is the structured JSON data:\n- Name: {{ $json.name }}\n- Sector: {{ $json.sector }}\n- Website: {{ $json.website }}\n- Headquarters: {{ $json.hq }}\n- Founded: {{ $json.founded }}\n- First Investment: {{ $json.first_investment }}\n- Founders: {{ $json.founders.join(\", \") }}\n- Description: {{ $json.description }}\n\nYour Output:\nSummarize this into a clear, well-formatted paragraph that future agents can read quickly.\nAvoid unnecessary repetition. Be neutral in tone.\n\n* Include that the VC has invested on that startup.\n\nReturn only the paragraph."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -1872,
+        560
+      ],
+      "id": "5d28574d-afd0-484e-a5a6-60cb6e621870",
+      "name": "AI Context"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Using:\n- Company Context:\n{{ $('AI Context').item.json.output }}\n\n- Curated Sources + Extracted Points:\n{{ $('AI Sector - Fetch').item.json.output }} \n\n- Suggested domains:\n{{ $('AI Source Mapper').item.json.output }}\n\nAnalyze the {{ $('Code').item.json.sector }} sector as of {{ $today }} following the required structure.\nInclude market size + forecast with inline source (title or URL), clearly mark core vs broader market.\nUse only claims that appear in the Finder’s sources; otherwise flag as \"Gap\".\n",
+        "options": {
+          "systemMessage": "=You are the Sector Intelligence Analyst for Uni.Fund.\n\nUse ONLY:\n- The company context from AI Context\n- The curated sources + extracted points from the AI Sector Finder (Perplexity)\n- The suggested domains from AI Source Mapper\n\nStrict rules:\n- Cite inline with report title or direct URL from the Finder payload.\n- Distinguish clearly core sector vs broader industry.\n- Market size must include year, geo, and scope; if unclear, state the gap.\n- VC/funding activity must be validated via Dealroom/CB Insights/Crunchbase links present in the Finder sources.\n- If any critical data point is missing or conflicting, call it out explicitly—no guessing.\n\nStructure:\n- Sector Overview\n- Trends & Emerging Technology\n- Risks & Regulatory Dynamics\n- VC & Corporate Investment\n\nTone: concise, data-driven, investment-ready.\nToday's date: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -1088,
+        464
+      ],
+      "id": "b0ec06ca-20fd-4268-aff5-8bd03fc71637",
+      "name": "AI Sector"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Using:\n- Finder JSON:\n{{ $('AI Competition - Fetch').item.json.output }}\n\n- Company Context:\n{{ $('AI Context').item.json.output }}\n\n- Suggested Sources:\n{{ $('AI Source Mapper').item.json.output }}\n\nWrite the competitive landscape for {{ $('Code').item.json.sector }} as of {{ $today }}.\n\nRequirements:\n- Cover all active competitors listed by Finder.\n- Clearly separate Direct / Adjacent / Category Leaders / Consolidators / Niche Innovators.\n- Note funding status (VC-backed vs Not Disclosed) and activity signals.\n- Conclude with Market Landscape Summary and {{ $('Code').item.json.name }} Positioning Summary.\n",
+        "options": {
+          "systemMessage": "=You are the Competitor Intelligence Analyst for Uni.Fund.\n\nYou receive:\n- A JSON payload from the Competition Finder (Perplexity)\n- Company context\n- Suggested sources from AI Source Mapper\n\nYour task:\n- Transform the verified JSON competitor list into an **investment-grade competitive landscape analysis**.\n\nStrict rules:\n- Include ALL active competitors provided by Finder, even if funding is old or undisclosed.\n- Funding must be cited as given in Finder payload. If “Not Disclosed”, explain company sustains activity via product revenue, grants, or partnerships.\n- Group competitors into categories: Direct, Adjacent, Category Leaders, Consolidators, Niche Innovators.\n- Highlight which competitors are VC-backed scaleups vs. active bootstrapped/grant-funded players.\n- Provide inline citations with URLs from the Finder payload.\n\nRequired structure:\n1. **Competitor Profiles**\n   - Name — Country — Website\n   - 1–2 line factual description [citations]\n   - Why it’s relevant for {{ $('Code').item.json.name }}\n   - Funding status (round, amount, year, investors, or “Not Disclosed”) [citations]\n   - Activity status (signal of being active, e.g., app update, PR, acquisition, partnership) [citations]\n\n2. **Market Landscape Summary**\n   - Describe whether the market is Fragmented / Consolidated / Shifting / Niche\n   - Note balance between VC-backed scaleups and grant-funded/bootstrapped players\n\n3. **{{ $('Code').item.json.name }} Positioning Summary**\n   - Where it stands relative to competitors\n   - Differentiation (tech, partnerships, audience, monetization)\n   - Risks from well-funded incumbents or adjacent marketplaces\n\nTone: concise, verifiable, investor-ready.\nToday's date: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -1088,
+        640
+      ],
+      "id": "c7dae297-bfcf-42bd-a56b-f2fa1e84913a",
+      "name": "AI Competition"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        -816,
+        560
+      ],
+      "id": "d3af15cc-6de8-4a67-9686-d9d47c9c5cc0",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Using all available information from:\n- Company Context\n- Sector Analysis\n- Competition Analysis\n- News (latest developments, past 90 days)\n- Signals (funding, traction, partnerships)\n\nWrite a strategic investment research note for {{ $('Code').first().json.name }} as of {{ $today }}.\n\nYour goal is to help the investment committee assess:\n- What’s recently changed in the company’s trajectory\n- What opportunities are actionable\n- Where risks, gaps, or blind spots exist\n- How these align (or not) with VC investment criteria (scalability, defensibility, market timing)\n\nStructure the note as follows:\n1. **Critical Strategic Developments (last 90 days only, with source links)**\n2. **Signals of Strength (with numbers and sources)**\n    - Focus on concrete KPIs such as revenue, active users, DAUs, ARR, retention, CAC/LTV — if none are available, say so explicitly.\n3. **Risks & External Factors**\n4. **Strategic Blind Spots or Gaps**\n5. **Timing-Sensitive Investment Angles**\n6. **Conclusion**: 2–3 lines on whether the company is well-positioned and what the IC should focus on\n\nOnly include what is verified. Do not assume funding rounds, partnerships, or metrics unless explicitly sourced. If data is missing, say so.\n\nTip: Use the \"Signals\" block to extract hard metrics — funding is not enough. The IC needs proof of traction.\n\nNote: Before finalizing the report, double-check each signal or insight for source traceability and specificity. Exclude anything not clearly linked to verifiable evidence.\n\nIMPORTANT Information:\n{{ $('Match').first().json.companyInfo }}\n\nRelated News:\n{{ $('AI News').first().json.output }}\n\nSignals:\n{{ $('AI Signals').first().json.output }}\n\nFinancial Data (auto-selected: GEMI → Alternative fallback):\n{{\n  (function () {\n    const has = v => v !== undefined && v !== null && String(v).trim() !== '';\n\n    const fin = $if($('AI Financials').isExecuted, $('AI Financials').first().json.output, null);\n    const alt = $if($('Alternative Financials').isExecuted, $('Alternative Financials').first().json.output, null);\n\n    if (has(fin)) return fin;\n    if (has(alt)) return alt;\n    return 'No financial data available from GEMI or Alternative sources.';\n  })()\n}}\n",
+        "options": {
+          "systemMessage": "=You are a Senior Investment Research Analyst supporting Uni.Fund.\n\nYour task is to synthesize information from multiple structured inputs (company profile, sector trends, competitive intelligence, news, and signals) and deliver a concise, source-grounded, strategic investment note.\n\nYou must:\n- Focus only on developments that occurred within the last 90 days unless explicitly stated otherwise.\n- Include only developments and metrics that are verifiably sourced (news articles, Crunchbase, Dealroom, Statista, company blog posts, etc).\n- Never speculate unless explicitly framed as a hypothesis — avoid unverified funding claims or partnerships.\n- When referencing a competitive move or partnership, **link to a specific source**. If the source is generic (e.g. homepage), label the data as “Unconfirmed”.\n- Always extract and prioritize KPIs (e.g. number of users, revenue, churn, ARR, margins, conversion rate, retention, CAC/LTV) when available. Include source. If KPI-level data is unavailable, clearly state “No verifiable KPIs found” in the Signals of Strength section.\n- Connect internal data (revenue, funding, partnerships) with external market signals (e.g. competition, regulation, macro) to generate strategic insight — not narrative.\n\nThe structure of your report should include:\n- Critical Strategic Developments (last 90 days, with sources)\n- Signals of Strength (funding, traction, partnerships – quantified)\n- Risks & External Factors (competition, macro, regulation)\n- Strategic Blind Spots or Gaps (e.g. no APAC footprint, overreliance on grants, no clear moat)\n- Timing-Sensitive Investment Angles (e.g. open grant windows, time-bound regulatory risks)\n\nImportant:\n- Use citations wherever possible. Language should be sharp, analytical, and written for a partner-level VC audience — focus on implications, not summaries. KPIs are more valuable than narratives — always extract numeric proof of traction or performance when present.\n- If information is missing or uncertain, clearly say so — don’t assume.\n- Do not include any data point or development unless it is supported by a specific, verifiable source link (e.g. news article, Crunchbase entry, press release).\n- If a development (e.g. a partnership or competitive move) lacks source verification, explicitly mark it as \"Unverified\" and move it to a lower priority tier in the analysis.\n- Do not list sector-wide trends (e.g., market size, CAGR, funding climate) as core strategic developments unless the startup is explicitly cited or benchmarked within them.\n- Use such market data only to frame context in your interpretation (e.g., \"Given the $181B TravelTech market, Clio Muse is well positioned if it expands to X...\")\n- Always include **quantifiable** traction metrics if available (e.g., users, ARR, DAUs, number of tours sold, market penetration). If such data is not available, call this out explicitly as a visibility gap.\n\nAdditional formatting rules:\n- In the \"Signals of Strength\" section, if KPIs like revenue, users, CAC, or retention are missing, create a final bullet called **Visibility Gap**, and state which KPIs are absent and why this limits benchmarking.\n- In the \"Strategic Blind Spots\" section, if product differentiation is an issue, include examples of what features or partnerships could serve as differentiators (e.g., AR integration, exclusive content, AI-driven curation).\n- Always refer to investor-relevant KPIs by name, even if unavailable, to guide future diligence.\n- Always integrate the AI Financials section (official GEMI filings) into your assessment, especially when analyzing scalability, funding readiness, and risk.\n- Consider how financial strength or weakness affects:\n  - Competitive positioning\n  - Expansion capability\n  - Partnership leverage\n  - Investment risk\n- If no public financials exist, state so explicitly and assess operational viability based on traction or partnerships.\n- Each development or KPI must have a clear source in parentheses with a working URL. If the input source does not include a URL, label it explicitly as [Unverified].\n- Never override financial metrics derived from GEMI filings with numbers mentioned in news or press. If there is a discrepancy, cite both, but flag the GEMI figure as the official baseline.\n- End with 2–3 sentences summarizing (a) investment readiness, (b) critical diligence focus areas (e.g., KPIs to request, governance checks), and (c) timing urgency (if any).\n\n\nToday's Date: {{ $today }}.\n\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        1728,
+        560
+      ],
+      "id": "8c3efbb4-d63c-43a0-931f-740fb097f0ea",
+      "name": "AI Researcher"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Using the following inputs:\n- AI Context\n- AI Sector\n- AI Competition\n- AI News\n- AI Financials\n- AI Researcher Summary\n\n…write a structured investment analysis report for {{ $('Code').first().json.name }} as of {{ $today }}.\n\nInclude:\n- Executive Summary (max 2–3 lines, must show one core strength and one core weakness/risk)\n- Investment Thesis (why this startup stands out now — vs sector peers — based on evidence)\n- Attractiveness Score (1–10), with justification across:\n  - Market Timing\n  - Founder/Team Quality\n  - Product Differentiation\n  - Investment Scalability\n- Top 2–3 Strategic Recommendations for the Fund (with timeframe and responsible owner)\n- Top 2–3 Recommendations for the Startup (with timeframe and responsible owner)\n- Risks (each with probability, impact, mitigation idea)\n- Timing Notes (market windows, grants, runway)\n- Competition Overview: write as short bullet points (no tables). For each competitor, note positioning, recent moves, and risks posed to the startup.\n- Watch Items (1–2 lines each, highlight developments to monitor)\n\nImportant rules:\n- Do not include any tables in the output — use bullet points or short paragraphs only.\n- Reference specific signals, metrics, or news items with source links where available.\n- Always incorporate financial data from GEMI (AI Financials) into your assessment. If other sources disagree, cite both but flag GEMI as official baseline.\n- Keep analysis concise, action-oriented, and investor-ready.\n\nInputs:\nCompany Info:\n{{ $('Match').first().json.companyInfo }}\n\nRelated News:\n{{ $('AI News').first().json.output }}\n\nSignals:\n{{ $('AI Signals').first().json.output }}\n\nFinancial Data (auto-selected: GEMI → Alternative fallback):\n{{\n  (function () {\n    const has = v => v !== undefined && v !== null && String(v).trim() !== '';\n\n    const fin = $if($('AI Financials').isExecuted, $('AI Financials').first().json.output, null);\n    const alt = $if($('Alternative Financials').isExecuted, $('Alternative Financials').first().json.output, null);\n\n    if (has(fin)) return fin;\n    if (has(alt)) return alt;\n    return 'No financial data available from GEMI or Alternative sources.';\n  })()\n}}\n\n\nResearch:\n{{ $('AI Researcher').item.json.output }}\n",
+        "options": {
+          "systemMessage": "=You are a VC Investment Committee Analyst.\n\nYou receive a synthesized research briefing from the AI Researcher, along with inputs from the startup profile, sector outlook, competitive landscape, and market signals.\n\nYour job is to:\n- Formulate a clear investment thesis and final recommendation\n- Score the attractiveness across 4 key lenses: market timing, team quality, differentiation, and investment scalability.\n- Distill 2–3 specific and prioritized recommendations for both the Fund and the Startup\n- Identify 2–3 key risks (with likelihood and mitigation ideas)\n- Highlight any immediate timing considerations (e.g. grants, exits, fundraising windows)\n\nRules:\n- **Do not use tables in your output.** Use only concise bullet points or short paragraphs.\n- Executive Summary must be max 2–3 lines and include one core strength and one core weakness/risk.\n- Each Attractiveness Score must be written as “Score = X/10” followed by a one-line justification with a metric or signal.\n- Fund & Startup Recommendations: each must specify timeframe (30–180 days) and responsible owner (e.g. Fund GP, BizDev, Startup CEO).\n- Risks must include probability, impact, and a short mitigation idea.\n- If competition is discussed, compare competitors in short bullet points (1–2 lines each), focusing on recent moves and risks posed.\n- Watch Items: max 2 lines each, highlight emerging but not yet investable signals.\n- Always integrate financial data from GEMI filings into the assessment. If other sources conflict with GEMI numbers, flag GEMI as the official baseline.\n\nLast Notes:\n- Prioritize non-obvious strategic insights, not summaries. Interpret signals with precision and propose actions aligned with fund-level strategy. Think like a General Partner under time pressure.\n- Recommendations should be actionable within 30–180 days. Time sensitivity matters.\n\nCurrent Date Today: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        2000,
+        672
+      ],
+      "id": "c845558a-b4b4-417b-ad31-26bdb97c8638",
+      "name": "AI Analyst"
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $json.email }}",
+        "subject": "={{ $json.subject }}",
+        "message": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.1,
+      "position": [
+        2912,
+        672
+      ],
+      "id": "d295d587-b938-4324-a1da-56b7ea7573c2",
+      "name": "Send a message",
+      "webhookId": "8a1f4517-6064-4e53-8dc8-72d54985b5c3",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "3Z6SioQcjxAhPRwh",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Find the most relevant and current news about the company, its competitors and its sector as of {{ $today }}.\n\nReturn:\n- 3–5 **important and verifiable events** from the past 6 months.\n- Each event must include:\n  - Category\n  - Company Involved\n  - Summary\n  - Date (preferably from the original article)\n  - Source URL (must be live)\n  - Verification Status (Verified / Unconfirmed)\n  - Impact Level (High / Medium / Low)\n\nDo not include general references without a traceable source.\n\nThen summarize:\n- Strategic Implications: What do these events mean for investors?\n\nIMPORTANT Information:\n{{ $('Match').item.json.companyInfo }}\n",
+        "options": {
+          "systemMessage": "=You are the Real-Time News Intelligence Agent for Uni.Fund.\n\nYour task is to identify **recent (last 3–6 months)**, **reliable**, and **strategically important** news related to:\n- The startup\n- Its competitors\n- The sector\n\nYou must:\n- Search across **validated public sources** only (e.g. Crunchbase, Dealroom, Skift, PhocusWire, company pressrooms, EU sites, TechCrunch, Sifted, Tech.eu).\n- Provide **real source URLs** for each piece of news. If none exist, state clearly: \"No public URL found.\"\n- Prioritize signals that matter for investors: fundraising, partnerships, product launches, geographic expansion, regulatory shifts, and major competitor moves.\n\nReturn 3 structured sections:\n1. **News Summary (3–5 events)** with:\n   - Event category (e.g. “Partnership”, “Funding”, “Product Launch”)\n   - Headline-style summary\n   - Date (month/year)\n   - Company involved\n2. **Source URLs** (1 per event minimum)\n3. **Strategic Implications**: What does this mean for a Venture Capital?\n\nStrict rules:\n- Do not invent URLs. If unavailable, clearly note it.\n- If a bullet combines multiple topics (e.g. partnership + funding), clarify each one explicitly.\n- If a headline seems ambiguous, state your confidence level (e.g. “likely” or “confirmed”).\n- Avoid marketing fluff or blog speculation.\n\nYou are not summarizing news — you are identifying **investor-relevant signals**.\n\nSources to prioritize should be adapted dynamically based on the company's sector.\nAlways try to detect the relevant news ecosystem from the sector and search accordingly.\n\nBe accurate, recent, and insightful. You are not summarizing — you are identifying signals.\n\nYou will be given some sources to check out first.\n\nOnly include source URLs that are publicly verifiable and lead to a real webpage. If not, state: 'No public link available'.\n\nInclude source publication date, or mark it as 'estimated' if not directly cited.\n\nTag each item as 'Verified', 'Likely', or 'Unconfirmed' based on source strength and clarity.\n\nOnly include confirmed partnerships if a dedicated press release or article URL exists. Otherwise, mark clearly as unconfirmed.\n\nInclude the article’s publication date if available, or mark as ‘estimated’.\n\nClassify each news item by Impact Level: High / Medium / Low — based on its strategic relevance to the company or market.\n\nYour output must NOT include tables!\n\nToday's Date: {{ $today }}.\n\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -608,
+        560
+      ],
+      "id": "eef30da7-7d78-4110-ba0c-5ff76c02a1c4",
+      "name": "AI News"
+    },
+    {
+      "parameters": {
+        "jsCode": "const sector = $input.first().json.output;\nconst competition = $input.last().json.output;\nconst companyContext = $('AI Context').first().json.output;\nconst sourceMapper = $('AI Source Mapper').first().json.output;\n\nconst companyInfo = companyContext + \"\\n \" + sector + \"\\n \" + competition + \"\\n \" + sourceMapper;\n\nreturn {companyInfo}"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -720,
+        560
+      ],
+      "id": "2179a23e-8ca7-4320-badf-a2cb6824ad5c",
+      "name": "Match"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on the company you were given, it's sector, the analyst’s summary and the rest of the information you have, write a one-liner summary that captures the essence of the opportunity.\n\nIMPORTANT Information:\n{{ $('Match').first().json.companyInfo }}\n\nRelated News:\n{{ $('AI News').first().json.output }}\n\nSignals:\n{{ $('AI Signals').first().json.output }}\n\nFinancial Data (auto-selected: GEMI → Alternative fallback):\n{{\n  (function () {\n    const has = v => v !== undefined && v !== null && String(v).trim() !== '';\n\n    const fin = $if($('AI Financials').isExecuted, $('AI Financials').first().json.output, null);\n    const alt = $if($('Alternative Financials').isExecuted, $('Alternative Financials').first().json.output, null);\n\n    if (has(fin)) return fin;\n    if (has(alt)) return alt;\n    return 'No financial data available from GEMI or Alternative sources.';\n  })()\n}}\n\n\nResearch:\n{{ $('AI Researcher').item.json.output }}\n\nFinal Analysis:\n{{ $('AI Analyst').item.json.output }}",
+        "options": {
+          "systemMessage": "=You are a VC Email Subject Line Generator Agent.\n\nYou will receive:\n- Startup Company Information\n- Sector\n- Executive Summary from Analyst\n- Key highlights or investment angle\n\nYour job is to craft a one-liner summary (2–3 sentences) for a VC.\n\nUse action verbs, clarity, and concise language. Your tone should be investor-focused and strategic.\n\nAvoid generic terms like \"interesting\" or \"cool\". Highlight:\n- Growth signal\n- Innovation angle\n- VC relevance\n\nIf available, mention market size or recent strategic milestone (e.g., \"following a €50M EU grant extension\") to increase weight.\n\nToday's Date: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        2256,
+        672
+      ],
+      "id": "39a93731-3d16-40dd-9762-68dc38ad48f3",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "jsCode": "const startup = $('Code').first().json.name;\nconst startupLink = $('Code').first().json.link;\nconst context = $('AI Context').first().json.output;\nconst sector = $('AI Sector').first().json.output\nconst competition = $('AI Competition').first().json.output\nconst news = $('AI News').first().json.output;\nlet financials = null;\nif ($('AI Financials').isExecuted) {\n  financials = $('AI Financials').first().json.output;\n} else if ($('Alternative Financials').isExecuted) {\n  financials = $('Alternative Financials').first().json.output;\n} else {\n  financials = 'No financial data available from GEMI or Alternative sources.';\n}\nconst research = $('AI Researcher').first().json.output;\nconst analyst = $('AI Analyst').first().json.output;\nconst oneliner = $('AI Agent').first().json.output\nconst overallCompanyInformation = $input.first().json.output;\nconst today = new Date().toLocaleDateString(\"en-GB\", { year: 'numeric', month: 'long', day: 'numeric' });\nconst formatList = (arr) => arr.map(i => `<li>${i}</li>`).join(\"\");\nconst escapeHTML = str =>\n  str.replace(/&/g, '&amp;')\n     .replace(/</g, '&lt;')\n     .replace(/>/g, '&gt;')\n     .replace(/\"/g, '&quot;')\n     .replace(/'/g, '&#039;');\n\nfunction basicMarkdownToHTML(md) {\n  return md\n    // headings\n    .replace(/^#### (.*)$/gm, '<h5 style=\"margin-top: 20px; margin-bottom: 5px;\">$1</h5>')\n    .replace(/^### (.*)$/gm, '<h4 style=\"margin-top: 20px; margin-bottom: 5px;\">$1</h4>')\n    .replace(/^## (.*)$/gm, '<h3 style=\"margin-top: 25px; margin-bottom: 10px; color: #333;\">$1</h3>')\n    .replace(/^# (.*)$/gm, '<h3 style=\"margin-top: 30px; margin-bottom: 10px; color: #222;\">$1</h3>')\n    // bold text\n    .replace(/\\*\\*(.*?)\\*\\*/g, '<strong>$1</strong>')\n    // Italics\n    .replace(/\\*(.*?)\\*/g, '<span style=\"font-style: italic\">$1</span>')\n    // numbered lists\n    .replace(/^\\d+\\. (.*)$/gm, '<li>$1</li>')\n    // unordered lists\n    .replace(/^- (.*)$/gm, '<li>$1</li>')\n    // wrap standalone <li> with <ul> or <ol> later\n    .replace(/(<li>.*<\\/li>)/g, '<ul>$1</ul>')\n    .replace(/\\n{2,}/g, '<br><br>') // double newlines as spacing\n\n    // Format Links\n    .replace(/\\[([^\\]]+)\\]\\((https?:\\/\\/[^\\s)]+)\\)/g, '<a href=\"$2\" target=\"_blank\" style=\"color: #0066cc;\">$1</a>')\n\n}\n\nconst cleanAnalystOutput = escapeHTML(analyst)\n  .replace(/\\|/g, '&#124;')     // prevent table conflict\n  .replace(/\\\\n/g, '\\n');       // clean escaped newlines\n\nconst formatSection = str =>\n  `<div style=\"text-align: left; padding: 10px 0;\">` +\n  str\n    .split('\\n')\n    .map(line => line.trim() ? `<p style=\"margin: 6px 0;\">${line}</p>` : '<br>')\n    .join('') +\n  `</div>`;\n\n// const html = `\n// <!DOCTYPE html>\n// <html lang=\"en\">\n//   <head>\n//     <meta charset=\"UTF-8\" />\n//     <title>${startup} | AI Report</title>\n//   </head>\n  \n//   <body style=\"max-width: 700px; width: 100%; font-size: 15px; font-family: Poppins, sans-serif; background-color: #f9f9f9; padding: 30px; color: #333; justify-items:center; text-align:center;\">\n  \n//     <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width: 700px; margin: auto; background-color: #ffffff; border-radius: 10px; padding: 30px; border: 1px solid #e0e0e0;\">\n//       <tr>\n//         <td align=\"center\">\n//           <h1>🔍 AI-Powered Investment Report</h1>\n//           <h2 style=\"margin-top: 0;\">${startup}</h2>\n//           <p><a href=\"${startupLink}\" target=\"_blank\" style=\"color: #0066cc;\">Visit Startup Profile</a></p>\n//           <p><strong>${oneliner}</strong></p>\n//         </td>\n//       </tr>\n\n//       <tr><td><hr /></td></tr>\n\n//       <tr>\n//         <td>\n//           <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">Company Info</h3>\n//           ${formatSection(context)}\n          \n//           <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">💼 Sector Analysis</h3>\n//           <div style=\"text-align: left;\">${basicMarkdownToHTML(sector)}</div>\n          \n//           <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">🆚 Competitive Landscape</h3>\n//           <div style=\"text-align: left;\">${basicMarkdownToHTML(competition)}</div>\n          \n//           <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">📰 Market & News Insights</h3>\n//           <div style=\"text-align: left;\">${basicMarkdownToHTML(news)}</div>\n\n//           <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">📈 Financials</h3>\n//           <div style=\"text-align: left;\">${basicMarkdownToHTML(financials)}</div>\n          \n//           <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">🔎 Research Notes</h3>\n//           <div style=\"text-align: left;\">${basicMarkdownToHTML(research)}</div>\n          \n//           <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">🧠 Executive Summary</h3>\n//           <div style=\"text-align: left;\">${basicMarkdownToHTML(cleanAnalystOutput)}</div>\n\n\n//         </td>\n//       </tr>\n\n//       <tr><td><hr /></td></tr>\n\n//       <tr>\n//         <td align=\"center\">\n//           <p style=\"font-size: 12px; color: #aaa; padding-top: 30px;\">\n//             Generated by AI | ${today}<br />\n//             <a href=\"https://uni.fund\" style=\"color: #999; text-decoration: none;\" target=\"_blank\">Uni.Fund</a>\n//           </p>\n//         </td>\n//       </tr>\n\n//     </table>\n//   </body>\n// </html>\n// `;\n\nconst html = `\n<!DOCTYPE html>\n<html lang=\"en\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <title>${startup} | AI Report</title>\n  </head>\n  \n  <body style=\"max-width: 700px; width: 100%; font-size: 15px; font-family: Poppins, sans-serif; background-color: #f9f9f9; padding: 30px; color: #333; justify-items:center; text-align:center;\">\n  \n    <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\" style=\"max-width: 700px; margin: auto; background-color: #ffffff; border-radius: 10px; padding: 30px; border: 1px solid #e0e0e0;\">\n      <tr>\n        <td align=\"center\">\n          <h1>🔍 AI-Powered Investment Report</h1>\n          <h2 style=\"margin-top: 0;\">${startup}</h2>\n          <p><a href=\"${startupLink}\" target=\"_blank\" style=\"color: #0066cc;\">Visit Startup Profile</a></p>\n          <p><strong>${oneliner}</strong></p>\n        </td>\n      </tr>\n\n      <tr><td><hr /></td></tr>\n\n      <tr>\n        <td>\n          <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">🧠 Executive Summary</h3>\n          <div style=\"text-align: left;\">${basicMarkdownToHTML(cleanAnalystOutput)}</div>\n\n          <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">🔎 Research Notes</h3>\n          <div style=\"text-align: left;\">${basicMarkdownToHTML(research)}</div>\n\n          <tr>\n              <td style=\"padding: 30px 0;\">\n                  <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">\n                      <tr>\n                          <td style=\"width: 30%; height: 4px; background: linear-gradient(90deg, transparent, #667eea, #764ba2); border-radius: 2px;\"></td>\n                          <td style=\"text-align: center; padding: 0 20px;\">\n                              <div style=\"display: inline-block; padding: 12px 28px; background: linear-gradient(135deg, #667eea, #764ba2); color: white; font-size: 13px; font-weight: bold; border-radius: 25px; text-transform: uppercase; box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4); white-space: nowrap;\">\n                                  NEXT 3 SECTIONS\n                              </div>\n                          </td>\n                          <td style=\"width: 30%; height: 4px; background: linear-gradient(90deg, #764ba2, #667eea, transparent); border-radius: 2px;\"></td>\n                      </tr>\n                  </table>\n              </td>\n          </tr>\n\n        \n          <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">Overall Company Information</h3>\n          <div style=\"text-align: left;\">${basicMarkdownToHTML(overallCompanyInformation)}</div>\n\n          <tr>\n              <td style=\"padding: 30px 0;\">\n                  <table width=\"100%\" cellpadding=\"0\" cellspacing=\"0\">\n                      <tr>\n                          <td style=\"width: 25%; height: 3px; background: linear-gradient(90deg, transparent, #a8edea, #fed6e3); border-radius: 2px;\"></td>\n                          <td style=\"text-align: center; padding: 0 20px;\">\n                              <div style=\"display: inline-block; padding: 10px 24px; background: linear-gradient(135deg, #a8edea, #fed6e3); color: #333; font-size: 12px; font-weight: bold; border-radius: 20px; text-transform: uppercase; box-shadow: 0 3px 12px rgba(168, 237, 234, 0.4); white-space: nowrap;\">\n                                  📊 MARKET INTELLIGENCE\n                              </div>\n                          </td>\n                          <td style=\"width: 25%; height: 3px; background: linear-gradient(90deg, #fed6e3, #a8edea, transparent); border-radius: 2px;\"></td>\n                      </tr>\n                  </table>\n              </td>\n          </tr>\n          \n          <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">💼 Sector Analysis</h3>\n          <div style=\"text-align: left;\">${basicMarkdownToHTML(sector)}</div>\n          \n          <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">🆚 Competitive Landscape</h3>\n          <div style=\"text-align: left;\">${basicMarkdownToHTML(competition)}</div>\n          \n          <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">📰 Market & News Insights</h3>\n          <div style=\"text-align: left;\">${basicMarkdownToHTML(news)}</div>\n\n          <div style=\"margin: 40px 0 30px 0; text-align: center; \">\n            <div style=\"display: inline-block; width: 60px; height: 8px; background: linear-gradient(90deg, #667eea, #764ba2); border-radius: 4px; margin: 0 10px; box-shadow: 0 3px 8px rgba(102, 126, 234, 0.5);\"></div>\n            <div style=\"display: inline-block; width: 30px; height: 8px; background: linear-gradient(90deg, #f093fb, #f5576c); border-radius: 4px; margin: 0 5px;\"></div>\n            <div style=\"display: inline-block; width: 60px; height: 8px; background: linear-gradient(90deg, #764ba2, #667eea); border-radius: 4px; margin: 0 10px; box-shadow: 0 3px 8px rgba(118, 75, 162, 0.5);\"></div>\n        </div>\n\n          <h3 style=\"color: #333; background-color: #f0f0f0; padding: 8px 12px; border-radius: 6px; font-size: 18px; margin-top: 30px;\">📈 Financials</h3>\n          <div style=\"text-align: left;\">${basicMarkdownToHTML(financials)}</div>\n          \n        </td>\n      </tr>\n\n      <tr><td><hr /></td></tr>\n\n      <tr>\n        <td align=\"center\">\n          <p style=\"font-size: 12px; color: #aaa; padding-top: 30px;\">\n            Generated by AI | ${today}<br />\n            <a href=\"https://uni.fund\" style=\"color: #999; text-decoration: none;\" target=\"_blank\">Uni.Fund</a>\n          </p>\n        </td>\n      </tr>\n\n    </table>\n  </body>\n</html>\n`;\n\n\nreturn [\n  {\n    json: {\n      subject: `${startup} | AI Investment Report`,\n      name: $('Webhook').first().json.body.firstName,\n      email: $('Webhook').first().json.body.email,\n      body: html\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2768,
+        672
+      ],
+      "id": "b9bd6537-c55d-485e-8d25-75785663bf25",
+      "name": "Craft Email"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Based on the available outputs and data, extract key **investment signals** for the given company and it's sector as of {{ $today }}.\n\nInclude:\n- recent revenue, ARR or funding metrics,\n- partnerships,\n- customer growth,\n- IP filings,\n- market share movements,\n- expansion or cost-related events.\n\nOnly include **real, quantifiable data**. Avoid generic statements.\n\nFormat as a structured list. Include source and date if known.\n\nIMPORTANT Information:\n{{ $('Match').item.json.companyInfo }}\n\nRelated News:\n{{ $('AI News').item.json.output }}",
+        "options": {
+          "systemMessage": "=You are an AI Signals Engine trained to extract investment-relevant quantitative signals.\n\nYour job is to synthesize concrete signals from the available company research and news, including:\n- funding rounds,\n- revenue/ARR metrics,\n- partnerships,\n- market share movements,\n- regulatory/compliance events,\n- cost optimizations,\n- traction benchmarks (users, growth),\n- IP filings or product launches.\n\nOnly include company-level metrics with numerical specificity. Skip general phrasing like ‘increased competition’ or ‘strategic move’ unless tied to a quantifiable event (funding, launch, user growth, ARR, % market share).\n\nEach signal should be:\n- Specific (what happened)\n- Dated (when)\n- Sourced (where possible)\n- Actionable (why it matters)\n\nAvoid general statements or vague forecasts.\nDo not include sector-wide trends unless the company is directly involved.\n\nReturn your findings as a clean, bulleted list of signals, using this format:\n\n• **[Signal Type]**  \n  **Metric**: ...  \n  **Date & Source**: ...  \n  **Implication**: ...\n\nIMPORTANT:\n- Do not include sector-wide statistics unless the company is named or benchmarked in the report.\n- Reject all signals that do not include an article-level source (generic links are not acceptable).\n- When listing partnerships, include number of agencies or geographic coverage if possible.\n- Implications should reference potential outcomes (e.g. revenue growth, user acquisition, operational scale).\n- Do not include sector-level metrics (e.g. total market size) unless Clio Muse is explicitly cited or benchmarked.\n- Reject any signal where a specific article URL cannot be found. Generic homepages are not valid sources.\n- When reporting on competition, include detail like “3 new travel agency partners” only if confirmed by a traceable press release or blog post.\n\n\nToday's Date: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -368,
+        560
+      ],
+      "id": "e63eb6ee-4232-4bf2-a31f-258282664d14",
+      "name": "AI Signals"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Identify the best web sources to research the given company and its sector.\n\nGroup your suggestions by type (e.g., sector portals, startup databases, press/media, institutional sources), and explain why each is relevant. For each source, assign a **priority ranking (1 = most useful)** within its category.\n\nInclude at least one **niche-specific aggregator** or database that is relevant to the startup’s domain, especially if the company operates in verticals like TravelTech, AgriTech, EdTech, etc.\n\n\nThe sources should help future agents (Sector Intelligence, Competition Mapping, News Tracking etc) access up-to-date and accurate data.\n\nFocus especially on:\n  - market size and forecasts\n  - competitive landscape and benchmarking\n  - company-level activity (funding, clients, expansion)\n\nIMPORTANT Company Information:\n{{ $('AI Context').item.json.output }}",
+        "options": {
+          "systemMessage": "=You are an intelligent Source Mapping Agent helping investment analysts identify relevant, high-quality sources for research.\n\nGiven a company and its sector, output a list of **curated websites, databases, and portals** that are known to contain valuable, up-to-date information about:\n- the company (news, funding, partnerships),\n- its sector (trends, benchmarks),\n- and investment dynamics (VC activity, market signals).\n\nGroup your output into clear categories such as:\n- Sector-specific portals\n- Startup/funding databases\n- Press & news sources\n- Government or regulatory bodies\n- Analyst reports or market platforms\n\nOnly include sources that are likely to provide **useful qualitative or quantitative intelligence**, and assign a priority ranking (1–3) within each category based on relevance and trustworthiness.\n\nActively seek and include **niche-specific aggregators or portals** that are recognized within the startup’s sector (e.g., skift.com for TravelTech, agfundernews.com for AgriTech). These often provide targeted, high-signal insights.\n\nInclude only sources that are publicly accessible or known in the investment community.\nInclude up to 3 top sources per category — no more.\nAlways include source domain (e.g., 'skift.com') in the output.\nDo not invent sources or make up portals.\nPrioritize European sources if the company is based in the EU.\n\nUse concise rationales for why each source matters.\nFormat output in JSON.\n\nToday's Date: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.1,
+      "position": [
+        -1616,
+        560
+      ],
+      "id": "100ec8c3-0352-4f6e-8968-9bb56fdc65d8",
+      "name": "AI Source Mapper",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "model": "perplexity/sonar-deep-research",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -1712,
+        320
+      ],
+      "id": "da4c6115-37d2-4ef7-ad2e-6c3cf57caffc",
+      "name": "Perplexity Sonar Deep Research",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KyTETfbMWN8xulUP",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "perplexity/sonar-pro",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -608,
+        704
+      ],
+      "id": "79106003-96a8-4af5-8383-0e4e75e3aeab",
+      "name": "Perplexity Sonar Pro",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KyTETfbMWN8xulUP",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "model": "perplexity/sonar",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenRouter",
+      "typeVersion": 1,
+      "position": [
+        -368,
+        704
+      ],
+      "id": "19d8cfc7-4c4c-4dff-aab1-f287bbb2d5cd",
+      "name": "Perplexity Sonar",
+      "credentials": {
+        "openRouterApi": {
+          "id": "KyTETfbMWN8xulUP",
+          "name": "OpenRouter account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=\nAnalyze the financial and corporate data of the company: {{ $('Code').first().json.name }} (GEMI ID: {{ $('Code').first().json.gemi_number }}).\n\nYou are provided with the following summary from official Greek Business Registry PDFs:\n{{ $('AI FinSummary').first().json.output }}\n\n{{ $('AI ModSummary').first().json.output }}\n\nPerform the analysis strictly according to the System Prompt instructions.\n\n=== Additional Inputs (context only; DO NOT use for numbers) ===\nCompany Info:\n{{ $('Match').first().json.companyInfo }}\n\nNews (context only; DO NOT override filings):\n{{ $('AI News').first().json.output }}\n\nSignals (context only; DO NOT override filings):\n{{ $('AI Signals').first().json.output }}\n",
+        "options": {
+          "systemMessage": "=You are a financial analyst specializing in corporate registry filings.\n\nThe company under review is: {{ $('Code').first().json.name }} (GEMI ID: {{ $('Code').first().json.gemi_number }}).\n\nYou have been provided with summarized corpora of official documents from the Greek Business Registry (Γ.Ε.ΜΗ), pre-extracted from PDFs by an upstream agent:\n\n- **Modification Corpus Summary** → key announcements, statute changes, capital events, governance updates.\n- **Financial Corpus Summary** → financial statements, balance sheets, income statements, auditor reports, appendices.\n\nThese summaries are the only sources you must parse. Do not invent or assume additional documents. Each figure is labeled consistently (Assets, Liabilities, Equity, Share Capital, Reserves, Revenue, Expenses, Net Profit/Loss, Employees) and already contains source tags (e.g. [Financial 2023 Balance Sheet]). Always preserve and cite these tags. Do not invent or assume additional documents.  \n\n### Analysis Protocol\n1. Parse **ONLY** from the provided corpora (Modification, Financial).\n2. Extract registry details: registry name, GEMI ID, current legal form, country.\n3. Determine if the GEMI record is a branch/subsidiary (state clearly if not).\n4. Legal form history (e.g., ΙΚΕ → ΑΕ).\n5. Share capital & reserves; note changes (capital increases/reductions).\n6. Governance: Board of Directors & legal representatives (include full names/titles).\n7. Financials by year (oldest → most recent): Revenue, Expenses, EBIT, Depreciation/Amortization, EBITDA, Net Profit/Loss, Assets, Equity, Liabilities, Cash, Loans.  \n   - After each figure, cite the exact **source corpus and year** (e.g., [Financial 2022 Balance Sheet], [Modification 2021 GM Decision]).\n8. Auditor’s opinion: quote the Greek wording exactly (“Γνώμη χωρίς επιφύλαξη”, “Γνώμη με επιφύλαξη”) and summarize. Flag risk if qualified.\n9. Notable events: scan ALL modification filings for announcements, loans, statute changes, GM decisions, Προσάρτημα notes. If none present, state: “No announcement filings provided”.\n10. If figures conflict across sources, follow the Validation Protocol:\n    - Prefer explicit numbers in the relevant section (P&L, Balance Sheet, Auditor Report).\n    - Flag inconsistencies as “Extraction inconsistency”.\n\n### Important Rules\n- Use **exact figures only**; do not estimate.\n- Always **cite source corpus + year** after each metric.\n- If a field is missing (ARR, DAUs, CAC/LTV, etc.), list it under “Visibility Gaps”.\n- If reconciliation (Assets = Equity + Liabilities) fails, report “Extraction inconsistency” and stop interpretation for that year.\n- Context from News/Signals is **informational only**; do not override filings.\n\nConclude with a strategic assessment:\n- Financial viability (solvency, profitability, liquidity)\n- Scalability / funding readiness\n- Risks (liabilities, governance, audit qualifications)\n- Positive indicators\n- Visibility gaps for investors\n\nDo NOT include tables in your answer.\n\nToday's Date: {{ $today }}."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1472,
+        672
+      ],
+      "id": "1d0f24c9-a257-4f8e-adf5-7fd22ac5d3ed",
+      "name": "AI Financials",
+      "retryOnFail": true
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Find the most relevant and recent sources for the {{ $('Code').item.json.sector }} sector.\nUse these hints first:\n{{ $('AI Source Mapper').item.json.output }}\n\nCompany context to anchor scope:\n{{ $('AI Context').item.json.output }}\n\nReturn ONLY the JSON per the schema. Minimum 10 solid sources, at least 2 for funding activity databases, and at least 1 regulatory source if applicable.\n",
+        "options": {
+          "systemMessage": "=You are the Sector Source Finder for Uni.Fund.\n\nGoal: collect high-signal, recent, and citable sources for the <SECTOR> sector to support a downstream analyst.\n\nRules:\n- Time window: prioritize last 24 months; include older ONLY if they’re canonical market size reports.\n- Use AND prioritize sources from: Dealroom, CB Insights, Crunchbase News, PitchBook News, Phocuswright/Skift (Travel), ResearchAndMarkets, Statista (with caution), Gartner/IDC (if relevant), regulators, EU portals, company investor pages.\n- For funding/activity figures, include Dealroom/CBI/Crunchbase links. Do NOT extrapolate.\n- Return a compact JSON payload only (no prose).\n\nOutput JSON schema:\n{\n  \"sector\": \"<sector>\",\n  \"retrieved_at\": \"<ISO>\",\n  \"sources\": [\n    {\n      \"url\": \"...\",\n      \"title\": \"...\",\n      \"publisher\": \"...\",\n      \"pub_date\": \"YYYY-MM-DD\",\n      \"type\": \"market_size|trend|regulation|funding_db|news|report\",\n      \"why_relevant\": \"...\",\n      \"credibility\": 1-5\n    }\n  ],\n  \"extracted_points\": [\n    {\n      \"category\": \"market_size|trend|regulation|vc_activity\",\n      \"claim\": \"...\",                 // short, neutral, investment-ready\n      \"number_or_range\": \"...\",       // if any\n      \"geo_scope\": \"global|EU|country\",\n      \"year_or_period\": \"2024|2025-2029|latest\",\n      \"source_url\": \"...\",\n      \"confidence\": \"high|medium|low\"\n    }\n  ],\n  \"gaps\": [\"No reliable CAGR for EU sub-vertical ...\", \"...\"]\n}\n\nToday's Date: {{ $today }}."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -1344,
+        464
+      ],
+      "id": "096a0259-3c45-47c7-869c-6e0492368fe7",
+      "name": "AI Sector - Fetch"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Identify and verify **active, significant competitors** for {{ $('Code').item.json.name }} in the {{ $('Code').item.json.sector }} sector as of {{ $today }}.\n\nInputs:\n- Company context: {{ $('AI Context').item.json.output }}\n- Suggested sources: {{ $('AI Source Mapper').item.json.output }}\n\nInstructions:\n- Provide 6–10 competitors across categories: direct, adjacent, category leaders, consolidators, niche innovators.\n- Do not exclude companies only because they lack funding data. If they are active (apps updated, site active, partnerships, products sold), include them with \"Not Disclosed\" for funding.\n- Verify each with ≥2 sources (Crunchbase, Dealroom, CB Insights, app stores, company website, news, PR).\n- Return ONLY JSON in the schema provided by the system prompt.\n",
+        "options": {
+          "systemMessage": "=You are the Competitor Source Finder for Uni.Fund.\n\nYour task is to assemble a VERIFIED, CURRENT list of significant competitors for <STARTUP> in the <SECTOR>.\n\nCore rules:\n- Include ALL companies that are **active and relevant**, even if they have no recent funding.\n- Funding status is **informational, not a filter**. If not available or outdated, write \"Not Disclosed\" and highlight activity signals (app updates, partnerships, product launches).\n- Capture both DIRECT competitors (same product/market) and broader players:\n  • Direct competitors (same model, same audience)\n  • Adjacent/indirect players (marketplaces, OTAs, related SaaS)\n  • Category leaders or dominant incumbents\n  • Consolidators/acquirers\n  • Niche innovators (for example: AI, AR/VR, XR in cultural tourism)\n- Provide at least 6–10 companies, all significant for strategy. Rank importance by strategic relevance, not alphabetically.\n- Exclude only if a company is clearly INACTIVE (shut down, acquired and discontinued, dead website, no updates for >24 months).\n\nRequired JSON schema:\n{\n  \"startup\": \"<name>\",\n  \"sector\": \"<sector>\",\n  \"retrieved_at\": \"<ISO>\",\n  \"companies\": [\n    {\n      \"name\": \"...\",\n      \"country\": \"...\",\n      \"website\": \"...\",\n      \"type\": \"direct|adjacent|category_leader|consolidator|niche_innovator\",\n      \"description_factual\": \"...\",\n      \"why_competitor\": \"...\",\n      \"funding\": {\n        \"most_recent_round\": \"Seed|Series A|Grant|Not Disclosed\",\n        \"amount\": \"USD/EUR ... or 'Not Disclosed'\",\n        \"year\": 2024,\n        \"investors\": [\"...\"],\n        \"sources\": [\"...\"]\n      },\n      \"activity_check\": {\n        \"signal\": \"App update, blog, PR, product launch, etc.\",\n        \"sources\": [\"...\"]\n      },\n      \"verification\": {\n        \"sources_used\": [\"Crunchbase\",\"Dealroom\",\"Company site\",\"App store\"],\n        \"count\": 2,\n        \"confidence\": \"high|medium|low\"\n      }\n    }\n  ],\n  \"gaps\": [\n    \"Example: Several competitors lack VC funding disclosure but remain commercially active\",\n    \"Any missing niche segments\"\n  ]\n}\n\nToday's Date: {{ $today }}."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        -1344,
+        640
+      ],
+      "id": "ba272a13-cc2b-4f7d-8044-9f9e387b5333",
+      "name": "AI Competition - Fetch"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4.1",
+          "mode": "list",
+          "cachedResultName": "gpt-4.1"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        0,
+        0
+      ],
+      "id": "73feb6d0-eb29-4780-ba57-cdc71b040222",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "oNjAICRm0942JmCs",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "https://publicity.businessportal.gr/api/company/details",
+        "sendHeaders": true,
+        "headerParameters": {
+          "parameters": [
+            {
+              "name": "Content-Type",
+              "value": "application/json"
+            },
+            {
+              "name": "Accept",
+              "value": "application/json, text/plain, */*"
+            },
+            {
+              "name": "User-Agent",
+              "value": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/139.0.0.0 Safari/537.36"
+            },
+            {
+              "name": "Origin",
+              "value": "https://publicity.businessportal.gr"
+            },
+            {
+              "name": "Referer",
+              "value": "https://publicity.businessportal.gr/company/131959349000"
+            },
+            {
+              "name": "Accept-Language",
+              "value": "el,en;q=0.9"
+            },
+            {
+              "name": "Connection",
+              "value": "keep-alive"
+            }
+          ]
+        },
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={\n  \"query\": { \"arGEMI\":  \"{{ $('Code').first().json.gemi_number }}\"},\n  \"token\": null,\n  \"language\": \"el\"\n}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "json"
+            }
+          }
+        }
+      },
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        0,
+        672
+      ],
+      "id": "95edb770-5878-4f1e-a2da-06dd3edd7f08",
+      "name": "HTTP Request"
+    },
+    {
+      "parameters": {
+        "jsCode": "const root = $input.first().json.companyInfo\nconst payload = root.payload;\nconst companyId = String(payload.company?.id ?? \"\").trim();\nconst base = 'https://publicity.businessportal.gr';\n\nif (!companyId) throw new Error('Δεν βρέθηκε companyId');\n\nconst modIds = (payload.ModificationHistoryData ?? [])\n  .map(x => x?.id)\n  .filter(Boolean);\n\nconst finIds = [];\nfor (const period of (payload.companyFinancial ?? [])) {\n  for (const fa of (period?.FilesAndAuditors ?? [])) {\n    for (const b of (fa?.balancesheet ?? [])) {\n      if (b?.id != null) finIds.push(b.id);\n    }\n  }\n}\n\n// Φτιάχνουμε τα URLs\nconst items = [];\n\n// Modifications\nfor (const id of modIds) {\n  items.push({\n    json: {\n      kind: 'modification',\n      id: String(id),\n      url: `${base}/api/download/Modifications/${id}?companyId=${companyId}`\n    }\n  });\n}\n\n// Financial\nfor (const id of finIds) {\n  items.push({\n    json: {\n      kind: 'financial',\n      id: Number(id),\n      url: `${base}/api/download/financial/${id}?companyId=${companyId}`\n    }\n  });\n}\n\nreturn items;"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        144,
+        672
+      ],
+      "id": "77661f19-c1fe-4fc0-aa6f-3832d462f665",
+      "name": "PDFs"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "modification",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "1cea5b69-3d33-4b83-894b-c7f49e0433b0"
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Modification"
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 2
+                },
+                "conditions": [
+                  {
+                    "id": "7a8a6db2-761d-479e-b01c-8090fec734b2",
+                    "leftValue": "={{ $json.kind }}",
+                    "rightValue": "financial",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals",
+                      "name": "filter.operator.equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              },
+              "renameOutput": true,
+              "outputKey": "Financial"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.2,
+      "position": [
+        272,
+        672
+      ],
+      "id": "b4bf4fde-8a1c-4c5a-a6d8-f4e5ff303c7c",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.slice(0, 5);\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        576
+      ],
+      "id": "d7a6c7ea-af91-4879-9cc2-2bb2cd802ec3",
+      "name": "Top10-M"
+    },
+    {
+      "parameters": {
+        "jsCode": "return items.slice(0, 5);\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        416,
+        736
+      ],
+      "id": "faa921d8-69e1-4074-8387-c8319ed4617a",
+      "name": "Top10-F"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        688,
+        672
+      ],
+      "id": "9f75a342-90b7-492a-8fcb-db2451d1cf96",
+      "name": "MergePDFs"
+    },
+    {
+      "parameters": {
+        "operation": "Convert from PDF",
+        "url": "={{ $input.json }}",
+        "advancedOptions": {}
+      },
+      "type": "n8n-nodes-pdfco.PDFco Api",
+      "typeVersion": 1,
+      "position": [
+        544,
+        576
+      ],
+      "id": "1d938ee4-4051-429c-8472-45b429329388",
+      "name": "PDFco Api1",
+      "credentials": {
+        "pdfcoApi": {
+          "id": "kCdonsUQHqziUFlZ",
+          "name": "PDF.co account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "Convert from PDF",
+        "url": "={{ $input.json }}",
+        "advancedOptions": {}
+      },
+      "type": "n8n-nodes-pdfco.PDFco Api",
+      "typeVersion": 1,
+      "position": [
+        544,
+        736
+      ],
+      "id": "6879cbb3-de47-4f31-ada3-e5565bb44e14",
+      "name": "PDFco Api2",
+      "credentials": {
+        "pdfcoApi": {
+          "id": "kCdonsUQHqziUFlZ",
+          "name": "PDF.co account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Πάρε όλα τα texts από τα items\nconst texts = items.map(i => i.json.text || i.json.body || '');\n\n// Πρώτα 10 -> modification\nlet modificationText = texts.slice(0, 10).join(\"\\n\\n\");\n\n// Τελευταία 10 -> financial\nlet financialText = texts.slice(-10).join(\"\\n\\n\");\n\n// Καθάρισε τα πολλαπλά newlines -> μόνο ένα\nmodificationText = modificationText.replace(/(\\n\\s*\\n)+/g, '\\n');\nfinancialText = financialText.replace(/(\\n\\s*\\n)+/g, '\\n');\n\n// Καθάρισε τα πολλαπλά spaces -> το πολύ δύο\nmodificationText = modificationText.replace(/ {3,}/g, '  ');\nfinancialText = financialText.replace(/ {3,}/g, '  ');\n\n// Καθάρισε τα spaces μετά από newline -> κράτα μόνο το \\n\nmodificationText = modificationText.replace(/\\n +/g, '\\n');\nfinancialText = financialText.replace(/\\n +/g, '\\n');\n\n// Επιστροφή ενός αντικειμένου\nreturn [\n  {\n    json: {\n      modification: modificationText,\n      financial: financialText\n    }\n  }\n];\n"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        816,
+        672
+      ],
+      "id": "ee2248ab-f40c-4b82-8460-c8c46ad4ab5f",
+      "name": "Two Variables"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Using only the materials below from upstream nodes, write the **Overall Company Information** note in Markdown. \nDo not browse. Do not invent. No tables. Keep given source labels/links. Prefer official filings when numbers conflict.\n\nAs-of date: {{ $today }}\nCompany: {{ $('Code').first().json.name }}\n\nIMPORTANT Information:\n{{ $('Match').first().json.companyInfo }}\n\nNews:\n{{ $('AI News').first().json.output }}\n\nSignals:\n{{ $('AI Signals').first().json.output }}\n\nFinancial Data (auto-selected: GEMI → Alternative fallback):\n{{\n  (function () {\n    const has = v => v !== undefined && v !== null && String(v).trim() !== '';\n\n    const fin = $if($('AI Financials').isExecuted, $('AI Financials').first().json.output, null);\n    const alt = $if($('Alternative Financials').isExecuted, $('Alternative Financials').first().json.output, null);\n\n    if (has(fin)) return fin;\n    if (has(alt)) return alt;\n    return 'No financial data available from GEMI or Alternative sources.';\n  })()\n}}\n\nResearch Notes:\n{{ $('AI Researcher').first().json.output }}\n\nExecutive Summary / Final Analysis:\n{{ $('AI Analyst').first().json.output }}\n\nSummary of the whole analysis:\n{{ $('AI Agent').first().json.output }}",
+        "options": {
+          "systemMessage": "=You are “AI Overall Company Info,” an expert company profiler for Uni.Fund.\n\nGoal\nProduce a single, public-facing Company Information Note so that a Uni.Fund partner can quickly understand the company. Include only decision-relevant facts; no fluff.\n\nInputs you may receive (verbatim text from upstream nodes):\n- Company Context (short)\n- Sector Analysis\n- Competition Analysis\n- Sources / Citations\n- News\n- Signals (funding, traction, partnerships)\n- Financial Analysis from the Business Registry (official filings)\n- Research Notes (IMPORTANT)\n- Executive Summary / Analysis (IMPORTANT)\n\nHard rules\n- Use ONLY the provided inputs. Do not browse. Do not invent.\n- Treat Business Registry / official filings as the authoritative baseline. If press/blog numbers conflict, include both and mark the filing figure as the official one.\n- Preserve any inline source labels/links exactly as provided (e.g., [Financial 2023], [Modification 2025/05/05], or URLs).\n- If a fact is missing, write: “Not found in provided sources.”\n- Keep original currencies, dates, legal names; do not convert.\n- No tables. Markdown only. Neutral, analyst-grade tone. Deduplicate and keep the most recent/authoritative statement.\n- Highlight red flags (audit qualifications, tax exposures, convertibles/maturities, major gaps in KPIs).\n- Brevity inside completeness: 3–7 bullets per section; omit a section if entirely empty.\n- Target length: 700–1,100 words (unless inputs are materially shorter).\n\nToday's Date: {{ $today }}."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        2512,
+        672
+      ],
+      "id": "220b8346-765a-4535-9612-7526c8537b53",
+      "name": "AI Overall Company Info"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-5",
+          "mode": "list",
+          "cachedResultName": "gpt-5"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1488,
+        816
+      ],
+      "id": "16ee9f5a-3eb9-4c47-a5b1-7e1de2d36308",
+      "name": "OpenAI GPT-5",
+      "credentials": {
+        "openAiApi": {
+          "id": "oNjAICRm0942JmCs",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Summarize the following financial texts into a concise factual summary.\n\nInput Text (Financial Corpus):\n{{ $json.financial }}\n",
+        "options": {
+          "systemMessage": "=You are a financial document summarizer specializing in Business Registry (Γ.Ε.ΜΗ.) financial filings.\n\nInput:\n- Plain text extracted from official GEMI financial statements (Οικονομικές Καταστάσεις).\n- These include: balance sheets, income statements (P&L), auditor reports, management reports, appendices.\n\nCompany under review:\n- Name: {{ $('Code').first().json.name }}\n- GEMI ID: {{ $('Code').first().json.gemi_number }}\n\nTask:\n1. Summarize the financial information concisely under the header:\n   - `=== Financial Corpus Summary ===`\n2. Use a consistent labeling format for financial figures:\n   - Assets (Total): …\n   - Liabilities (Total): …\n   - Equity (Total): …\n   - Share Capital: …\n   - Reserves: …\n   - Revenue: …\n   - Expenses: …\n   - Net Profit/Loss: …\n   - Employees: …\n3. After each figure or fact, include a source tag in brackets, e.g.:\n   - [Financial 2023 Balance Sheet]\n   - [Financial 2023 Income Statement]\n4. Do NOT add explanations, opinions, or interpretations. Facts only.\n5. If a figure is missing, write explicitly: “Not disclosed”.\n6. If no financial filings exist, write: “No financial filings provided”.\n\nOutput:\n- Clean structured text (no tables, no bullet nesting).\n- Use plain text headers and consistent labels so another AI can parse reliably.\n\nToday's Date: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        944,
+        672
+      ],
+      "id": "67d4d03b-1aa5-4714-8c7d-2b30383e9861",
+      "name": "AI FinSummary"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o-mini",
+          "mode": "list",
+          "cachedResultName": "gpt-4o-mini"
+        },
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.2,
+      "position": [
+        1104,
+        832
+      ],
+      "id": "63b5485b-f376-454f-ad41-d4c17e48f722",
+      "name": "OpenAI GPT-4o-mini",
+      "credentials": {
+        "openAiApi": {
+          "id": "oNjAICRm0942JmCs",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Summarize the following GEMI announcements into a concise factual summary.\n\nInput Text (Modification Corpus):\n{{ $('Two Variables').first().json.modification }}\n",
+        "options": {
+          "systemMessage": "=You are a corporate registry document summarizer specializing in announcements from the Greek Business Registry (Γ.Ε.ΜΗ.).\n\nInput:\n- Plain text extracted from official GEMI announcements (Ιστορικό Ανακοινώσεων Γ.Ε.ΜΗ.).\n- These include: statute changes, capital increases/reductions, General Assembly (GM) decisions, Board of Directors appointments, mergers, loan announcements, appendices.\n\nCompany under review:\n- Name: {{ $('Code').first().json.name }}\n- GEMI ID: {{ $('Code').first().json.gemi_number }}\n\nTask:\n1. Summarize the announcements concisely under the header:\n   - `=== Modification Corpus Summary ===`\n2. For each announcement, include:\n   - Date (if available)\n   - Type of decision/event (GM decision, capital change, BoD appointment, etc.)\n   - Key details (e.g., names of board members, amounts of share capital changes)\n   - Expiry/term dates if mentioned\n3. After each fact, include a source tag in brackets, e.g.:\n   - [Modification 2023 GM Decision]\n   - [Modification 2024 Board Appointment]\n4. Do NOT add explanations, opinions, or interpretations. Facts only.\n5. If no announcements exist, write explicitly: “No announcement filings provided”.\n\nOutput:\n- Clean structured text (no tables, no bullet nesting).\n- Use plain text headers and consistent labels so another AI can parse reliably.\n\nToday's Date: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        1200,
+        672
+      ],
+      "id": "1032450e-32b0-4d91-8248-08b8e41553d4",
+      "name": "AI ModSummary"
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 2
+          },
+          "conditions": [
+            {
+              "id": "df7e44d1-8942-4292-90f9-3216c13f786e",
+              "leftValue": "={{ $('Code').first().json.gemi_number }}",
+              "rightValue": "=null",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.2,
+      "position": [
+        -96,
+        480
+      ],
+      "id": "6bd4b7f0-b925-4d1f-8dfa-914a305ee7f9",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Fetch and summarize the financial and corporate data of the company: {{ $('Code').first().json.name }}.\n\nYou must search across reliable and verifiable internet sources, including:\n- Official company website (investor relations, press releases, annual reports).\n- Crunchbase, PitchBook, CB Insights.\n- International corporate registries (if available).\n- Reputable financial news outlets (Bloomberg, Reuters, Financial Times, Forbes).\n- Trusted databases for startup/VC data (Dealroom, Tracxn).\n- Public filings repositories (SEC EDGAR, Companies House, EU filings, etc.).\n\nDeliver a concise factual financial overview strictly according to the System Prompt instructions.\n\n\nIMPORTANT Information:\n{{ $('Match').item.json.companyInfo }}\n\nRelated News:\n{{ $('AI News').item.json.output }}\n\nSignals:\n{{ $('AI Signals').item.json.output }}\n",
+        "options": {
+          "systemMessage": "=You are a financial data retriever and summarizer specializing in internet-based sources when no official Greek Business Registry (Γ.Ε.ΜΗ.) filings exist.\n\nCompany under review:\n- Name: {{ $('Code').first().json.name }}\n\nTask:\n1. Search and extract **legitimate, verifiable** financial and corporate data from the internet.  \n   Approved sources include:\n   - Official company website (annual reports, investor presentations, press releases).\n   - Crunchbase, PitchBook, CB Insights, Dealroom, Tracxn.\n   - Financial news (Bloomberg, Reuters, Financial Times, Forbes).\n   - Public corporate registries (SEC EDGAR, Companies House UK, EU filings).\n   - Venture/Startup databases (TechCrunch funding articles, etc.).\n\n2. Summarize findings under the header:\n   - `=== Alternative Financials Summary ===`\n\n3. Include the following categories if available:\n   - Funding Rounds: date, type (Seed, Series A, etc.), amount, investors.\n   - Revenue, Expenses, Net Profit/Loss.\n   - Assets, Liabilities, Equity (if reported).\n   - Key Financial KPIs (ARR, MRR, EBITDA, CAC/LTV, DAUs, MAUs).\n   - Valuation (latest disclosed).\n   - Employee count (latest disclosed).\n   - Major partnerships, acquisitions, IPO/SPAC status if relevant.\n\n4. After each fact or figure, include a source tag in brackets with clear attribution, e.g.:\n   - [Crunchbase 2024 Funding Round]\n   - [Company Website Annual Report 2023]\n   - [Bloomberg News 2022]\n\n5. If a figure is not disclosed or cannot be validated, write explicitly: “Not disclosed”.\n\n6. Do NOT include opinions, projections, or estimates. Facts only. Do NOT hallucinate numbers. If no information is found in the approved sources, output: “No alternative financial data found”.\n\nOutput:\n- Clean structured text (no tables, no bullet nesting).\n- Consistent labeling format so another AI agent can parse reliably.\n\nToday's Date: {{ $today }}.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 2.2,
+      "position": [
+        96,
+        352
+      ],
+      "id": "62e73db2-cc3d-40d5-9137-10045818f028",
+      "name": "Alternative Financials"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Code",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code": {
+      "main": [
+        [
+          {
+            "node": "AI Context",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Context": {
+      "main": [
+        [
+          {
+            "node": "AI Source Mapper",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Competition": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "AI Sector": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Researcher": {
+      "main": [
+        [
+          {
+            "node": "AI Analyst",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Match",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Analyst": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI News": {
+      "main": [
+        [
+          {
+            "node": "AI Signals",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Match": {
+      "main": [
+        [
+          {
+            "node": "AI News",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "AI Overall Company Info",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Craft Email": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Signals": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Source Mapper": {
+      "main": [
+        [
+          {
+            "node": "AI Sector - Fetch",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "AI Competition - Fetch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity Sonar Deep Research": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Source Mapper",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Sector - Fetch",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Competition - Fetch",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity Sonar Pro": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI News",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Perplexity Sonar": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Signals",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Financials": {
+      "main": [
+        [
+          {
+            "node": "AI Researcher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Sector - Fetch": {
+      "main": [
+        [
+          {
+            "node": "AI Sector",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Competition - Fetch": {
+      "main": [
+        [
+          {
+            "node": "AI Competition",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Context",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Sector",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Competition",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Researcher",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Analyst",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI Overall Company Info",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "Alternative Financials",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "HTTP Request": {
+      "main": [
+        [
+          {
+            "node": "PDFs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDFs": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Top10-M",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Top10-F",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "MergePDFs": {
+      "main": [
+        [
+          {
+            "node": "Two Variables",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Two Variables": {
+      "main": [
+        [
+          {
+            "node": "AI FinSummary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Overall Company Info": {
+      "main": [
+        [
+          {
+            "node": "Craft Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI GPT-5": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Financials",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI FinSummary": {
+      "main": [
+        [
+          {
+            "node": "AI ModSummary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI GPT-4o-mini": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI FinSummary",
+            "type": "ai_languageModel",
+            "index": 0
+          },
+          {
+            "node": "AI ModSummary",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI ModSummary": {
+      "main": [
+        [
+          {
+            "node": "AI Financials",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDFco Api1": {
+      "main": [
+        [
+          {
+            "node": "MergePDFs",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "PDFco Api2": {
+      "main": [
+        [
+          {
+            "node": "MergePDFs",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Top10-M": {
+      "main": [
+        [
+          {
+            "node": "PDFco Api1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Top10-F": {
+      "main": [
+        [
+          {
+            "node": "PDFco Api2",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Alternative Financials",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "HTTP Request",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Alternative Financials": {
+      "main": [
+        [
+          {
+            "node": "AI Researcher",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "versionId": "fe08d58f-a3b7-42e4-b2b0-508ce66f26b3",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "e7832bf08dee3ebf015e451adec65bd710be56e5a08c7ffd08b699511252b597"
+  },
+  "id": "qKGIqaLSyTfibbu8",
+  "tags": []
+}

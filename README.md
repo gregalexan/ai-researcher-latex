@@ -14,15 +14,24 @@ The system integrates Large Language Models (LLMs) with dynamic OSINT retrieval 
 
 ```
 .
-├── main.tex          # Main LaTeX source
-├── references.bib    # Bibliography (BibLaTeX / APA style)
-├── figures/          # Figures directory (add images here)
-└── .latexmkrc        # latexmk configuration
+├── main.tex               # Main LaTeX source
+├── references.bib         # Bibliography (BibLaTeX / APA style)
+├── figures/               # Figures directory
+├── workflow/              # Replication package
+│   ├── unifund-project-workflow.json   # n8n workflow export
+│   └── README.md          # Setup and import instructions
+└── .latexmkrc             # latexmk configuration
 ```
 
 ## Compilation
 
-The document uses **pdfLaTeX + Biber**. Run in order:
+The document uses **pdfLaTeX + Biber**. The simplest way is:
+
+```bash
+make
+```
+
+Or manually:
 
 ```bash
 pdflatex main.tex
@@ -31,8 +40,6 @@ pdflatex main.tex
 pdflatex main.tex
 ```
 
-Or configure your editor to use the included `.latexmkrc`.
-
 ## Replication Package
 
-The n8n workflow files, technical documentation, and a video walk-through are available in the project's supplementary repository (see the *Data and Workflow Availability* section of the paper).
+The n8n workflow export and setup instructions are in the [`workflow/`](workflow/) folder. See [`workflow/README.md`](workflow/README.md) for import instructions, required credentials, and how to adapt the company database to a different portfolio.
