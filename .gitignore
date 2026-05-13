@@ -88,3 +88,5 @@ Thumbs.db
 # Project-specific ignores
 FSDET x Grigoris.pdf
 other.tex
+
+*.zip
