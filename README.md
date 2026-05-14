@@ -6,7 +6,7 @@
 
 ## Paper
 
-📄 **Preprint:** [arXiv:2605.13110](https://arxiv.org/abs/2605.13110)
+📄 **Preprint:** [arXiv]([https://arxiv.org/abs/2605.13110](https://doi.org/10.48550/arXiv.2605.13110))
 
 If you use or build on this work, please cite:
 
@@ -18,7 +18,7 @@ If you use or build on this work, please cite:
   eprint  = {2605.13110},
   archivePrefix = {arXiv},
   primaryClass  = {cs.AI},
-  url     = {https://arxiv.org/abs/2605.13110}
+  url     = {[https://arxiv.org/abs/2605.13110](https://doi.org/10.48550/arXiv.2605.13110)}
 }
 ```
 
