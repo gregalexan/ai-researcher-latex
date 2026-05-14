@@ -4,6 +4,24 @@
 **Affiliation:** Department of Management Science and Technology, Athens University of Economics and Business (AUEB)  
 **Date:** March 2026
 
+## Paper
+
+📄 **Preprint:** [arXiv:2605.13110](https://arxiv.org/abs/2605.13110)
+
+If you use or build on this work, please cite:
+
+```bibtex
+@misc{alexandrou2026multiagent,
+  title   = {A Multi-Agent Orchestration Framework for Venture Capital Due Diligence},
+  author  = {Alexandrou, Grigorios and Pramatari, Katerina},
+  year    = {2026},
+  eprint  = {2605.13110},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.AI},
+  url     = {https://arxiv.org/abs/2605.13110}
+}
+```
+
 ## Overview
 
 This repository contains the LaTeX source for a research paper presenting a fully automated, multi-agent workflow for corporate due diligence and market analysis in the venture capital context.
